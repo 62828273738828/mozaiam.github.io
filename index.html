@@ -121,6 +121,9 @@ pre {
 code { font: .95rem/1.5 var(--codigo); color: var(--rosa); }
 .prompt { color: var(--texto-suave); user-select: none; }
 
+.nota { margin: .75rem 0 0; color: var(--texto-suave); font-size: .95rem; }
+.tutorial + .tutorial { margin-top: 1.25rem; }
+
 /* 9. SOBRE E RODAPÉ */
 #sobre p { max-width: 40rem; margin: 0 0 1rem; color: var(--texto-suave); }
 .rodape {
@@ -184,14 +187,80 @@ code { font: .95rem/1.5 var(--codigo); color: var(--rosa); }
     <h2>Tutorial escrito</h2>
     <p class="sub">Além do vídeo, você encontra o passo a passo em texto, com os comandos prontos.</p>
     <article class="tutorial">
-      <h3>Instalar o PCSX2 no Linux Mint</h3>
+      <h3>Atualizar o sistema</h3>
       <ol>
-        <li>Abra o terminal com <strong>Ctrl + Alt + T</strong>.</li>
-        <li>Instale o emulador pelo Flatpak:
+        <li>Abra o terminal com <strong>Ctrl + Alt + T</strong> e atualize a lista de pacotes e os programas:
+          <pre><code><span class="prompt">$</span> sudo apt update && sudo apt upgrade</code></pre>
+        </li>
+        <li>Remova pacotes que não são mais necessários (opcional):
+          <pre><code><span class="prompt">$</span> sudo apt autoremove</code></pre>
+        </li>
+        <li>Atualize também os programas instalados pelo Flatpak:
+          <pre><code><span class="prompt">$</span> flatpak update</code></pre>
+        </li>
+      </ol>
+      <p class="nota">O Gerenciador de Atualizações do Linux Mint faz o mesmo pela interface gráfica.</p>
+    </article>
+
+    <article class="tutorial">
+      <h3>Instalar e atualizar drivers de vídeo</h3>
+      <p class="nota">O jeito mais fácil é o Gerenciador de Drivers do Linux Mint (Menu > Administração). Para fazer pelo terminal, siga os passos abaixo.</p>
+      <ol>
+        <li>Descubra qual placa de vídeo você tem:
+          <pre><code><span class="prompt">$</span> lspci | grep -E "VGA|3D"</code></pre>
+        </li>
+        <li>Placa NVIDIA: veja os drivers disponíveis e qual é o recomendado:
+          <pre><code><span class="prompt">$</span> ubuntu-drivers devices</code></pre>
+        </li>
+        <li>Instale o driver recomendado e reinicie o PC:
+          <pre><code><span class="prompt">$</span> sudo ubuntu-drivers autoinstall
+<span class="prompt">$</span> sudo reboot</code></pre>
+        </li>
+        <li>Depois de reiniciar, confira se o driver NVIDIA está funcionando:
+          <pre><code><span class="prompt">$</span> nvidia-smi</code></pre>
+        </li>
+        <li>Placa AMD ou Intel: o driver já vem com o sistema. Instale o suporte ao Vulkan:
+          <pre><code><span class="prompt">$</span> sudo apt install mesa-vulkan-drivers</code></pre>
+        </li>
+        <li>Teste o Vulkan (vale para todas as placas):
+          <pre><code><span class="prompt">$</span> sudo apt install vulkan-tools
+<span class="prompt">$</span> vulkaninfo --summary</code></pre>
+        </li>
+      </ol>
+      <p class="nota">Depois de instalado, o driver NVIDIA recebe atualizações junto com as do sistema (veja o bloco acima).</p>
+    </article>
+
+    <article class="tutorial">
+      <h3>Instalar o PCSX2 com AppImage</h3>
+      <ol>
+        <li>Baixe o AppImage do PCSX2 para Linux no site oficial, <strong>pcsx2.net</strong>.</li>
+        <li>Abra o terminal com <strong>Ctrl + Alt + T</strong> e entre na pasta onde salvou o arquivo (aqui, Downloads):
+          <pre><code><span class="prompt">$</span> cd ~/Downloads</code></pre>
+        </li>
+        <li>Dê permissão para o arquivo ser executado:
+          <pre><code><span class="prompt">$</span> chmod +x pcsx2-*.AppImage</code></pre>
+        </li>
+        <li>Abra o PCSX2:
+          <pre><code><span class="prompt">$</span> ./pcsx2-*.AppImage</code></pre>
+        </li>
+      </ol>
+      <p class="nota">O nome do arquivo muda a cada versão, e o * completa o nome. Se houver mais de uma versão na pasta, digite o nome completo.</p>
+      <p class="nota">Se o PCSX2 não abrir, falta a biblioteca FUSE 2 que os AppImages usam. No Linux Mint 22 ou mais novo, instale:</p>
+      <pre><code><span class="prompt">$</span> sudo apt install libfuse2t64</code></pre>
+      <p class="nota">No Linux Mint 21, o pacote se chama <code>libfuse2</code>. Não instale o pacote <code>fuse</code>, porque ele pode causar problemas no sistema.</p>
+    </article>
+
+    <article class="tutorial">
+      <h3>Instalar o PCSX2 com Flatpak</h3>
+      <ol>
+        <li>Abra o terminal com <strong>Ctrl + Alt + T</strong> e instale o emulador:
           <pre><code><span class="prompt">$</span> flatpak install flathub net.pcsx2.PCSX2</code></pre>
         </li>
         <li>Abra o PCSX2:
           <pre><code><span class="prompt">$</span> flatpak run net.pcsx2.PCSX2</code></pre>
+        </li>
+        <li>Para atualizar só o PCSX2 depois:
+          <pre><code><span class="prompt">$</span> flatpak update net.pcsx2.PCSX2</code></pre>
         </li>
       </ol>
     </article>
