@@ -139,6 +139,18 @@ code { font: .95rem/1.5 var(--codigo); color: var(--rosa); }
 .nota { margin: .75rem 0 0; color: var(--texto-suave); font-size: .95rem; }
 .tutorial + .tutorial { margin-top: 1.25rem; }
 
+/* 8d. LINKS ÚTEIS */
+.links { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.link-card {
+  display: block; padding: 1.1rem 1.25rem; color: var(--texto); text-decoration: none;
+  background: var(--superficie); border: 1px solid var(--borda); border-radius: 10px;
+  transition: border-color .2s;
+}
+.link-card:hover { border-color: var(--carmesim); }
+.link-card strong { display: block; font: 1.5rem/1.1 var(--titulo); letter-spacing: .02em; }
+.link-card span { color: var(--texto-suave); font-size: .95rem; }
+.rodape nav { display: flex; flex-wrap: wrap; gap: .4rem 1.25rem; }
+
 /* 8b. BLOCO DE COMANDO COM BOTÃO "COPIAR" */
 .bloco { position: relative; margin-top: .5rem; }
 .bloco pre { margin: 0; padding-right: 5.5rem; }
@@ -184,6 +196,7 @@ code { font: .95rem/1.5 var(--codigo); color: var(--rosa); }
   <nav aria-label="Menu principal">
     <a href="#videos">Vídeos</a>
     <a href="#tutorial">Tutorial</a>
+    <a href="#downloads">Downloads</a>
     <a href="#sobre">Sobre</a>
   </nav>
 </header>
@@ -311,6 +324,29 @@ code { font: .95rem/1.5 var(--codigo); color: var(--rosa); }
         </li>
       </ol>
     </article>
+
+    <article class="tutorial">
+      <h3>Conseguir a BIOS do PS2</h3>
+      <p class="nota">O PCSX2 não vem com a BIOS, porque ela é protegida por direitos autorais. Ela precisa ser extraída do seu próprio PS2, seguindo o método da documentação oficial.</p>
+      <ol>
+        <li>Abra a documentação oficial em <a href="https://pcsx2.net/docs" target="_blank" rel="noopener">pcsx2.net/docs</a> e procure a página sobre a BIOS.</li>
+        <li>Siga o método indicado para extrair a BIOS do seu console.</li>
+        <li>No PCSX2, abra <strong>Configurações &gt; BIOS</strong> e selecione a pasta onde você salvou o arquivo.</li>
+      </ol>
+      <p class="nota">Neste site não compartilhamos nem indicamos arquivos de BIOS para download.</p>
+    </article>
+  </section>
+
+  <!-- DOWNLOADS E LINKS ÚTEIS: sempre fontes oficiais -->
+  <section id="downloads" class="secao container">
+    <h2>Downloads e links úteis</h2>
+    <p class="sub">Sempre pelas fontes oficiais, para você baixar a versão mais recente com segurança.</p>
+    <div class="links">
+      <a class="link-card" href="https://pcsx2.net/downloads" target="_blank" rel="noopener"><strong>PCSX2</strong><span>Baixe o emulador e o AppImage na página oficial.</span></a>
+      <a class="link-card" href="https://pcsx2.net/docs" target="_blank" rel="noopener"><strong>Documentação do PCSX2</strong><span>Guias oficiais, incluindo como obter a BIOS do seu próprio PS2.</span></a>
+      <a class="link-card" href="https://flathub.org/apps/net.pcsx2.PCSX2" target="_blank" rel="noopener"><strong>PCSX2 no Flathub</strong><span>Página do PCSX2 para instalar pelo Flatpak.</span></a>
+      <a class="link-card" href="https://linuxmint.com" target="_blank" rel="noopener"><strong>Linux Mint</strong><span>Site oficial do sistema, com downloads e documentação.</span></a>
+    </div>
   </section>
 
   <!-- SOBRE -->
@@ -332,7 +368,12 @@ code { font: .95rem/1.5 var(--codigo); color: var(--rosa); }
 <!-- RODAPÉ -->
 <footer class="container rodape">
   <span>© 2026 Controle Quebrado</span>
-  <a href="https://www.youtube.com/@controlequebrado_tv" target="_blank" rel="noopener">YouTube</a>
+  <nav aria-label="Rodapé">
+    <a href="sobre.html">Sobre</a>
+    <a href="contato.html">Contato</a>
+    <a href="privacidade.html">Privacidade</a>
+    <a href="https://www.youtube.com/@controlequebrado_tv" target="_blank" rel="noopener">YouTube</a>
+  </nav>
 </footer>
 
 <script>

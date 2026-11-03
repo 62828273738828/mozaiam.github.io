@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sobre o canal | Controle Quebrado</title>
+<meta name="description" content="Conheça o Controle Quebrado: tutoriais em português de Linux, games, emulação e tecnologia.">
+<meta name="theme-color" content="#0c0a10">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600&display=swap">
+<style>
+/* Cores e fontes do canal (as mesmas da página inicial) */
+:root {
+  --fundo: #0c0a10; --superficie: #17131d; --borda: #2b2433;
+  --texto: #f4f1f6; --texto-suave: #b6adbf; --carmesim: #e3123f; --rosa: #ff5c8a;
+  --titulo: "Bebas Neue", "Arial Narrow", Impact, sans-serif;
+  --corpo: "Barlow", system-ui, sans-serif;
+  color-scheme: dark; box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { color-scheme: dark; } }
+:root[data-theme="dark"] { color-scheme: dark; }
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+*, *::before, *::after { box-sizing: inherit; }
+body { margin: 0; background: var(--fundo); color: var(--texto); font: 400 1.125rem/1.7 var(--corpo); }
+a { color: var(--rosa); }
+a:focus-visible { outline: 3px solid var(--rosa); outline-offset: 3px; }
+.container { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem; }
+.topo { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .75rem; padding-top: 1.25rem; padding-bottom: 1.25rem; }
+.logo { font: 1.7rem/1 var(--titulo); color: var(--texto); text-decoration: none; letter-spacing: .03em; }
+.topo a.voltar { color: var(--texto-suave); text-decoration: none; }
+.topo a.voltar:hover { color: var(--texto); }
+main { padding-block: 2rem 3.5rem; }
+h1 { margin: 0 0 .5rem; font: clamp(2.8rem, 9vw, 4.5rem)/1 var(--titulo); letter-spacing: .02em; }
+h1 span { color: var(--carmesim); }
+h2 { margin: 2.25rem 0 .5rem; font: 2rem/1.1 var(--titulo); letter-spacing: .02em; }
+p, li { color: var(--texto-suave); }
+p { margin: 0 0 1rem; }
+.atualizado { font-size: .95rem; }
+.btn { display: inline-block; padding: .8rem 1.4rem; border-radius: 6px; font-weight: 600; text-decoration: none; background: var(--carmesim); color: #fff; transition: background .2s; }
+.btn:hover { background: #b80d33; }
+.btn:focus-visible { outline: 3px solid var(--rosa); outline-offset: 3px; }
+.rodape { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .75rem; padding-top: 1.5rem; padding-bottom: 2rem; border-top: 1px solid var(--borda); color: var(--texto-suave); font-size: .95rem; }
+.rodape nav { display: flex; flex-wrap: wrap; gap: .4rem 1.25rem; }
+</style>
+</head>
+<body>
+<header class="container topo">
+  <a class="logo" href="index.html">Controle Quebrado</a>
+  <a class="voltar" href="index.html">Voltar ao início</a>
+</header>
+<main class="container">
+<h1>Sobre o <span>canal</span></h1>
+<p>Bem-vindo ao Controle Quebrado! Aqui você encontra tutoriais, dicas, testes e soluções para aproveitar melhor seus jogos no PC.</p>
+<p>Exploramos o universo do Linux, Windows, emuladores, PCSX2, Steam, Proton e tecnologia, com configurações, melhorias gráficas, otimização de desempenho e soluções para problemas comuns.</p>
+<p>O objetivo é simples: ajudar você a jogar melhor, resolver problemas e aproveitar ao máximo seu computador, sem complicação.</p>
+<h2>O que você encontra no site</h2>
+<p>Os tutoriais dos vídeos também estão aqui em texto, com os comandos prontos para copiar, além de links para as fontes oficiais de cada programa.</p>
+<h2>Nossa regra</h2>
+<p>Usamos apenas fontes oficiais. Não hospedamos nem indicamos arquivos de BIOS, ROMs ou jogos piratas. Para usar o PCSX2, você precisa da BIOS extraída do seu próprio PS2 e de jogos que você tenha legalmente.</p>
+<p><a class="btn" href="https://www.youtube.com/@controlequebrado_tv" target="_blank" rel="noopener">Inscreva-se no canal</a></p>
+</main>
+<footer class="container rodape">
+  <span>© 2026 Controle Quebrado</span>
+  <nav aria-label="Rodapé">
+    <a href="sobre.html">Sobre</a>
+    <a href="contato.html">Contato</a>
+    <a href="privacidade.html">Privacidade</a>
+    <a href="https://www.youtube.com/@controlequebrado_tv" target="_blank" rel="noopener">YouTube</a>
+  </nav>
+</footer>
+</body>
+</html>

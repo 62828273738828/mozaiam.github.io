@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Contato | Controle Quebrado</title>
+<meta name="description" content="Fale com o Controle Quebrado: dúvidas sobre tutoriais, sugestões de vídeos e parcerias.">
+<meta name="theme-color" content="#0c0a10">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600&display=swap">
+<style>
+/* Cores e fontes do canal (as mesmas da página inicial) */
+:root {
+  --fundo: #0c0a10; --superficie: #17131d; --borda: #2b2433;
+  --texto: #f4f1f6; --texto-suave: #b6adbf; --carmesim: #e3123f; --rosa: #ff5c8a;
+  --titulo: "Bebas Neue", "Arial Narrow", Impact, sans-serif;
+  --corpo: "Barlow", system-ui, sans-serif;
+  color-scheme: dark; box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { color-scheme: dark; } }
+:root[data-theme="dark"] { color-scheme: dark; }
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+*, *::before, *::after { box-sizing: inherit; }
+body { margin: 0; background: var(--fundo); color: var(--texto); font: 400 1.125rem/1.7 var(--corpo); }
+a { color: var(--rosa); }
+a:focus-visible { outline: 3px solid var(--rosa); outline-offset: 3px; }
+.container { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem; }
+.topo { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .75rem; padding-top: 1.25rem; padding-bottom: 1.25rem; }
+.logo { font: 1.7rem/1 var(--titulo); color: var(--texto); text-decoration: none; letter-spacing: .03em; }
+.topo a.voltar { color: var(--texto-suave); text-decoration: none; }
+.topo a.voltar:hover { color: var(--texto); }
+main { padding-block: 2rem 3.5rem; }
+h1 { margin: 0 0 .5rem; font: clamp(2.8rem, 9vw, 4.5rem)/1 var(--titulo); letter-spacing: .02em; }
+h1 span { color: var(--carmesim); }
+h2 { margin: 2.25rem 0 .5rem; font: 2rem/1.1 var(--titulo); letter-spacing: .02em; }
+p, li { color: var(--texto-suave); }
+p { margin: 0 0 1rem; }
+.atualizado { font-size: .95rem; }
+.btn { display: inline-block; padding: .8rem 1.4rem; border-radius: 6px; font-weight: 600; text-decoration: none; background: var(--carmesim); color: #fff; transition: background .2s; }
+.btn:hover { background: #b80d33; }
+.btn:focus-visible { outline: 3px solid var(--rosa); outline-offset: 3px; }
+.rodape { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .75rem; padding-top: 1.5rem; padding-bottom: 2rem; border-top: 1px solid var(--borda); color: var(--texto-suave); font-size: .95rem; }
+.rodape nav { display: flex; flex-wrap: wrap; gap: .4rem 1.25rem; }
+</style>
+</head>
+<body>
+<header class="container topo">
+  <a class="logo" href="index.html">Controle Quebrado</a>
+  <a class="voltar" href="index.html">Voltar ao início</a>
+</header>
+<main class="container">
+<h1><span>Contato</span></h1>
+<p>Quer tirar uma dúvida sobre um tutorial, sugerir um vídeo ou falar sobre parceria? Hoje o jeito mais rápido é pelo canal no YouTube.</p>
+<p><a class="btn" href="https://www.youtube.com/@controlequebrado_tv" target="_blank" rel="noopener">Abrir o canal no YouTube</a></p>
+<h2>Por e-mail</h2>
+<p>Para parcerias e outros assuntos, escreva para o <a class="email" href="contato.html">e-mail do canal</a><noscript> (sem JavaScript o endereço não aparece; ele é controlequebradocontato [arroba] gmail [ponto] com)</noscript>.</p>
+<h2>Dúvidas sobre um tutorial</h2>
+<p>Comente no vídeo que você está seguindo. Assim outras pessoas com a mesma dúvida também veem a resposta.</p>
+<h2>Sugestões de vídeos</h2>
+<p>Sugestões de novos tutoriais são bem-vindas. Diga qual jogo, programa ou problema você gostaria de ver no canal.</p>
+<h2>O que não respondemos</h2>
+<p>Pedidos de arquivos de BIOS, ROMs ou jogos piratas não são respondidos. Veja como obter a BIOS do jeito certo no guia da <a href="index.html#tutorial">página inicial</a>.</p>
+</main>
+<footer class="container rodape">
+  <span>© 2026 Controle Quebrado</span>
+  <nav aria-label="Rodapé">
+    <a href="sobre.html">Sobre</a>
+    <a href="contato.html">Contato</a>
+    <a href="privacidade.html">Privacidade</a>
+    <a href="https://www.youtube.com/@controlequebrado_tv" target="_blank" rel="noopener">YouTube</a>
+  </nav>
+</footer>
+<script>
+// Monta o e-mail com JavaScript para dificultar a leitura por robôs de spam
+(function () {
+  var usuario = 'controlequebradocontato', dominio = 'gmail.com';
+  document.querySelectorAll('.email').forEach(function (a) {
+    a.href = 'mailto:' + usuario + '@' + dominio;
+    a.textContent = usuario + '@' + dominio;
+  });
+})();
+</script>
+</body>
+</html>
