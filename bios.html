@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Como conseguir a BIOS do PS2 | Controle Quebrado</title>
+<meta name="description" content="Guia para configurar o PCSX2 com a BIOS do seu próprio PS2, com passo a passo e perguntas frequentes.">
+<meta name="theme-color" content="#0c0a10">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600&display=swap">
+<style>
+/* Cores e fontes do canal (as mesmas da página inicial) */
+:root {
+  --fundo: #0c0a10; --superficie: #17131d; --borda: #2b2433;
+  --texto: #f4f1f6; --texto-suave: #b6adbf; --carmesim: #e3123f; --rosa: #ff5c8a;
+  --titulo: "Bebas Neue", "Arial Narrow", Impact, sans-serif;
+  --corpo: "Barlow", system-ui, sans-serif;
+  color-scheme: dark; box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { color-scheme: dark; } }
+:root[data-theme="dark"] { color-scheme: dark; }
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+*, *::before, *::after { box-sizing: inherit; }
+body { margin: 0; background: var(--fundo); color: var(--texto); font: 400 1.125rem/1.7 var(--corpo); }
+a { color: var(--rosa); }
+a:focus-visible { outline: 3px solid var(--rosa); outline-offset: 3px; }
+.container { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem; }
+.topo { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .75rem; padding-top: 1.25rem; padding-bottom: 1.25rem; }
+.logo { font: 1.7rem/1 var(--titulo); color: var(--texto); text-decoration: none; letter-spacing: .03em; }
+.topo a.voltar { color: var(--texto-suave); text-decoration: none; }
+.topo a.voltar:hover { color: var(--texto); }
+main { padding-block: 2rem 3.5rem; }
+h1 { margin: 0 0 .5rem; font: clamp(2.8rem, 9vw, 4.5rem)/1 var(--titulo); letter-spacing: .02em; }
+h1 span { color: var(--carmesim); }
+h2 { margin: 2.25rem 0 .5rem; font: 2rem/1.1 var(--titulo); letter-spacing: .02em; }
+p, li { color: var(--texto-suave); }
+p { margin: 0 0 1rem; }
+.atualizado { font-size: .95rem; }
+.btn { display: inline-block; padding: .8rem 1.4rem; border-radius: 6px; font-weight: 600; text-decoration: none; background: var(--carmesim); color: #fff; transition: background .2s; }
+.btn:hover { background: #b80d33; }
+.btn:focus-visible { outline: 3px solid var(--rosa); outline-offset: 3px; }
+.rodape { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .75rem; padding-top: 1.5rem; padding-bottom: 2rem; border-top: 1px solid var(--borda); color: var(--texto-suave); font-size: .95rem; }
+.rodape nav { display: flex; flex-wrap: wrap; gap: .4rem 1.25rem; }
+details { margin: .75rem 0; padding: .9rem 1.1rem; background: var(--superficie); border: 1px solid var(--borda); border-radius: 10px; }
+summary { cursor: pointer; font-weight: 600; color: var(--texto); }
+summary:focus-visible { outline: 3px solid var(--rosa); outline-offset: 3px; }
+details[open] summary { margin-bottom: .5rem; }
+details p { margin: 0; }
+ol { padding-left: 1.25rem; }
+li { margin: .75rem 0; }
+</style>
+</head>
+<body>
+<header class="container topo">
+  <a class="logo" href="index.html">Controle Quebrado</a>
+  <a class="voltar" href="index.html">Voltar ao início</a>
+</header>
+<main class="container">
+<h1>Como conseguir a <span>BIOS do PS2</span></h1>
+<p>O PCSX2 precisa de uma BIOS do PS2 para funcionar, mas ela não vem junto com o emulador. Neste guia você entende o porquê e vê como configurar o PCSX2 depois de extrair a BIOS do seu próprio console.</p>
+<h2>Por que o PCSX2 não vem com a BIOS</h2>
+<p>A BIOS é o software interno do PS2 e é protegida por direitos autorais. Por isso o projeto não distribui esse arquivo e orienta que cada pessoa extraia a BIOS do console que possui.</p>
+<h2>Passo a passo</h2>
+<ol>
+  <li>Tenha em mãos um PS2 seu. A extração só vale para o seu próprio console.</li>
+  <li>Abra a documentação oficial em <a href="https://pcsx2.net/docs" target="_blank" rel="noopener">pcsx2.net/docs</a> e procure a página sobre a BIOS. É lá que fica o método atualizado.</li>
+  <li>Siga o método indicado para extrair a BIOS do seu console. O processo exige software ou hardware específico, então leia tudo com calma antes de começar.</li>
+  <li>Salve os arquivos extraídos em uma pasta no seu computador.</li>
+  <li>No PCSX2, abra <strong>Configurações &gt; BIOS</strong>, clique em <strong>Procurar</strong> para apontar a pasta onde salvou os arquivos e atualize a lista.</li>
+  <li>Selecione a BIOS que apareceu na lista.</li>
+</ol>
+<p>Além da BIOS, você precisa dos jogos, que também devem ser seus: discos originais ou cópias feitas por você dos seus próprios discos.</p>
+<h2>Perguntas frequentes</h2>
+<details><summary>Preciso mesmo ter um PS2?</summary><p>Sim. A BIOS precisa ser extraída de um console que você possui, e não existe alternativa legal para isso.</p></details>
+<details><summary>Posso baixar a BIOS de algum site?</summary><p>Não. Além de infringir os direitos autorais da Sony, arquivos de fontes desconhecidas podem trazer vírus ou não funcionar direito. Por isso não indicamos nenhum site de download.</p></details>
+<details><summary>Posso passar a minha BIOS para um amigo?</summary><p>Não. Compartilhar o arquivo, mesmo com amigos, é distribuição, e isso não é permitido. Cada pessoa deve extrair a BIOS do próprio console.</p></details>
+<details><summary>Qual região de BIOS devo usar?</summary><p>Em geral, usar a BIOS da mesma região do jogo ajuda na compatibilidade. Se algum jogo não funcionar bem, teste outra BIOS que você tenha extraído do seu console.</p></details>
+<details><summary>Aparece a mensagem pedindo uma BIOS válida. O que faço?</summary><p>Confira se a pasta escolhida em Configurações &gt; BIOS é a certa e atualize a lista. Se a BIOS continuar sem aparecer, o arquivo pode ter ficado incompleto ou corrompido. Nesse caso, extraia de novo.</p></details>
+<details><summary>Onde fica a pasta da BIOS?</summary><p>Depende de como você instalou o PCSX2. Em Configurações &gt; BIOS o próprio programa mostra a pasta que está usando, e você pode trocar por outra.</p></details>
+<details><summary>Não tenho um PS2. E agora?</summary><p>Sem um console seu, não há como obter a BIOS de forma legal, e o PCSX2 não funciona sem ela. Vale pesquisar se você consegue emprestar ou comprar um PS2 usado para fazer a extração.</p></details>
+<p><a href="index.html#tutorial">Voltar aos tutoriais</a></p>
+</main>
+<footer class="container rodape">
+  <span>© 2026 Controle Quebrado</span>
+  <nav aria-label="Rodapé">
+    <a href="sobre.html">Sobre</a>
+    <a href="contato.html">Contato</a>
+    <a href="privacidade.html">Privacidade</a>
+    <a href="https://www.youtube.com/@controlequebrado_tv" target="_blank" rel="noopener">YouTube</a>
+  </nav>
+</footer>
+</body>
+</html>
