@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Guia rápido de comandos | Controle Quebrado</title>
+<meta name="description" content="Comandos do Linux Mint para jogos e emulação, com botão de copiar: sistema, drivers, AppImage e Flatpak.">
+<meta name="theme-color" content="#0c0a10">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600&display=swap">
+<style>
+/* Cores e fontes do canal (as mesmas da página inicial) */
+:root {
+  --fundo: #0c0a10; --superficie: #17131d; --borda: #2b2433;
+  --texto: #f4f1f6; --texto-suave: #b6adbf; --carmesim: #e3123f; --rosa: #ff5c8a;
+  --titulo: "Bebas Neue", "Arial Narrow", Impact, sans-serif;
+  --corpo: "Barlow", system-ui, sans-serif;
+  color-scheme: dark; box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { color-scheme: dark; } }
+:root[data-theme="dark"] { color-scheme: dark; }
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+*, *::before, *::after { box-sizing: inherit; }
+body { margin: 0; background: var(--fundo); color: var(--texto); font: 400 1.125rem/1.7 var(--corpo); }
+a { color: var(--rosa); }
+a:focus-visible { outline: 3px solid var(--rosa); outline-offset: 3px; }
+.container { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem; }
+.topo { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .75rem; padding-top: 1.25rem; padding-bottom: 1.25rem; }
+.logo { font: 1.7rem/1 var(--titulo); color: var(--texto); text-decoration: none; letter-spacing: .03em; }
+.topo a.voltar { color: var(--texto-suave); text-decoration: none; }
+.topo a.voltar:hover { color: var(--texto); }
+main { padding-block: 2rem 3.5rem; }
+h1 { margin: 0 0 .5rem; font: clamp(2.8rem, 9vw, 4.5rem)/1 var(--titulo); letter-spacing: .02em; }
+h1 span { color: var(--carmesim); }
+h2 { margin: 2.25rem 0 .5rem; font: 2rem/1.1 var(--titulo); letter-spacing: .02em; }
+p, li { color: var(--texto-suave); }
+p { margin: 0 0 1rem; }
+.atualizado { font-size: .95rem; }
+.btn { display: inline-block; padding: .8rem 1.4rem; border-radius: 6px; font-weight: 600; text-decoration: none; background: var(--carmesim); color: #fff; transition: background .2s; }
+.btn:hover { background: #b80d33; }
+.btn:focus-visible { outline: 3px solid var(--rosa); outline-offset: 3px; }
+.rodape { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .75rem; padding-top: 1.5rem; padding-bottom: 2rem; border-top: 1px solid var(--borda); color: var(--texto-suave); font-size: .95rem; }
+.rodape nav { display: flex; flex-wrap: wrap; gap: .4rem 1.25rem; }
+pre { margin: 0; padding: .8rem 5.5rem .8rem 1rem; overflow-x: auto; background: var(--fundo); border: 1px solid var(--borda); border-radius: 6px; }
+code { font: .95rem/1.5 ui-monospace, "Cascadia Code", Consolas, monospace; color: var(--rosa); }
+.prompt { color: var(--texto-suave); user-select: none; }
+.bloco { position: relative; margin: .5rem 0 1.25rem; }
+.copiar { position: absolute; top: .45rem; right: .45rem; padding: .3rem .7rem; background: var(--superficie); border: 1px solid var(--borda); border-radius: 6px; color: var(--texto-suave); font: 600 .85rem var(--corpo); cursor: pointer; transition: color .2s, border-color .2s; }
+.copiar:hover { color: var(--texto); border-color: var(--rosa); }
+.copiar:focus-visible { outline: 3px solid var(--rosa); outline-offset: 2px; }
+h2[id] { scroll-margin-top: 1rem; }
+ol { padding-left: 1.25rem; }
+li { margin: .75rem 0; }
+.video-destaque { display: block; margin: 1.25rem 0; overflow: hidden; color: var(--texto); text-decoration: none; border: 1px solid var(--borda); border-radius: 10px; transition: border-color .2s; }
+.video-destaque:hover { border-color: var(--carmesim); }
+.video-destaque img { display: block; width: 100%; height: auto; }
+.video-destaque span { display: block; padding: .8rem 1rem; background: var(--superficie); font-weight: 600; }
+.atualizado { font-size: .95rem; }
+</style>
+</head>
+<body>
+<header class="container topo">
+  <a class="logo" href="index.html">Controle Quebrado</a>
+  <a class="voltar" href="index.html">Voltar ao início</a>
+</header>
+<main class="container">
+<h1>Guia rápido de <span>comandos</span></h1>
+<p>Os comandos do Linux Mint mais usados nos tutoriais do canal. Abra o terminal com <strong>Ctrl + Alt + T</strong>, clique em Copiar e cole.</p>
+<h2 id="sistema">Sistema</h2>
+<p><strong>Atualizar o sistema.</strong> Atualiza a lista de pacotes e os programas instalados.</p>
+<div class="bloco"><pre><code><span class="prompt">$</span> sudo apt update &amp;&amp; sudo apt upgrade</code></pre><button type="button" class="copiar">Copiar</button></div>
+<p><strong>Limpar pacotes que sobraram.</strong> Remove pacotes que não são mais necessários.</p>
+<div class="bloco"><pre><code><span class="prompt">$</span> sudo apt autoremove</code></pre><button type="button" class="copiar">Copiar</button></div>
+<p><strong>Atualizar os programas Flatpak.</strong> Atualiza tudo o que foi instalado pelo Flatpak.</p>
+<div class="bloco"><pre><code><span class="prompt">$</span> flatpak update</code></pre><button type="button" class="copiar">Copiar</button></div>
+<h2 id="drivers">Drivers de vídeo</h2>
+<p><strong>Ver qual é a sua placa de vídeo.</strong> Mostra o modelo da placa.</p>
+<div class="bloco"><pre><code><span class="prompt">$</span> lspci | grep -E "VGA|3D"</code></pre><button type="button" class="copiar">Copiar</button></div>
+<p><strong>Ver os drivers NVIDIA disponíveis.</strong> Mostra os drivers e qual é o recomendado.</p>
+<div class="bloco"><pre><code><span class="prompt">$</span> ubuntu-drivers devices</code></pre><button type="button" class="copiar">Copiar</button></div>
+<p><strong>Instalar o driver NVIDIA recomendado.</strong> Depois da instalação, reinicie o PC.</p>
+<div class="bloco"><pre><code><span class="prompt">$</span> sudo ubuntu-drivers autoinstall
+<span class="prompt">$</span> sudo reboot</code></pre><button type="button" class="copiar">Copiar</button></div>
+<p><strong>Conferir o driver NVIDIA.</strong> Funciona só em placas NVIDIA, depois de reiniciar.</p>
+<div class="bloco"><pre><code><span class="prompt">$</span> nvidia-smi</code></pre><button type="button" class="copiar">Copiar</button></div>
+<p><strong>Suporte ao Vulkan em AMD e Intel.</strong> O driver já vem no sistema; este pacote completa o suporte ao Vulkan.</p>
+<div class="bloco"><pre><code><span class="prompt">$</span> sudo apt install mesa-vulkan-drivers</code></pre><button type="button" class="copiar">Copiar</button></div>
+<p><strong>Testar o Vulkan.</strong> Vale para todas as placas.</p>
+<div class="bloco"><pre><code><span class="prompt">$</span> sudo apt install vulkan-tools
+<span class="prompt">$</span> vulkaninfo --summary</code></pre><button type="button" class="copiar">Copiar</button></div>
+<h2 id="appimage">AppImage</h2>
+<p><strong>Dar permissão para executar.</strong> Rode na pasta onde o arquivo está. O * completa o nome da versão.</p>
+<div class="bloco"><pre><code><span class="prompt">$</span> chmod +x pcsx2-*.AppImage</code></pre><button type="button" class="copiar">Copiar</button></div>
+<p><strong>Abrir o AppImage.</strong> Também na pasta do arquivo.</p>
+<div class="bloco"><pre><code><span class="prompt">$</span> ./pcsx2-*.AppImage</code></pre><button type="button" class="copiar">Copiar</button></div>
+<p><strong>Instalar a biblioteca que o AppImage usa.</strong> Para o Linux Mint 22 ou mais novo. No Mint 21 o pacote se chama libfuse2. Não instale o pacote fuse.</p>
+<div class="bloco"><pre><code><span class="prompt">$</span> sudo apt install libfuse2t64</code></pre><button type="button" class="copiar">Copiar</button></div>
+<h2 id="flatpak">Flatpak (PCSX2)</h2>
+<p><strong>Instalar o PCSX2.</strong> Instala pelo Flathub.</p>
+<div class="bloco"><pre><code><span class="prompt">$</span> flatpak install flathub net.pcsx2.PCSX2</code></pre><button type="button" class="copiar">Copiar</button></div>
+<p><strong>Abrir o PCSX2.</strong> Abre o emulador instalado pelo Flatpak.</p>
+<div class="bloco"><pre><code><span class="prompt">$</span> flatpak run net.pcsx2.PCSX2</code></pre><button type="button" class="copiar">Copiar</button></div>
+<p><strong>Atualizar só o PCSX2.</strong> Não mexe nos outros programas.</p>
+<div class="bloco"><pre><code><span class="prompt">$</span> flatpak update net.pcsx2.PCSX2</code></pre><button type="button" class="copiar">Copiar</button></div>
+<p><strong>Ver o que está instalado.</strong> Lista os programas Flatpak.</p>
+<div class="bloco"><pre><code><span class="prompt">$</span> flatpak list</code></pre><button type="button" class="copiar">Copiar</button></div>
+<p><strong>Desinstalar o PCSX2.</strong> Remove o emulador instalado pelo Flatpak.</p>
+<div class="bloco"><pre><code><span class="prompt">$</span> flatpak uninstall net.pcsx2.PCSX2</code></pre><button type="button" class="copiar">Copiar</button></div>
+<h2 id="ajuda">Informações para pedir ajuda</h2>
+<p><strong>Dados do seu sistema.</strong> Copie o resultado e cole no comentário do vídeo. Informe também a versão do PCSX2 e o nome do jogo. O nvidia-smi só funciona em placas NVIDIA.</p>
+<div class="bloco"><pre><code><span class="prompt">$</span> cat /etc/os-release
+<span class="prompt">$</span> uname -r
+<span class="prompt">$</span> lspci | grep -E "VGA|3D"
+<span class="prompt">$</span> nvidia-smi
+<span class="prompt">$</span> free -h
+<span class="prompt">$</span> echo $XDG_SESSION_TYPE</code></pre><button type="button" class="copiar">Copiar</button></div>
+
+</main>
+<footer class="container rodape">
+  <span>© 2026 Controle Quebrado</span>
+  <nav aria-label="Rodapé">
+    <a href="sobre.html">Sobre</a>
+    <a href="contato.html">Contato</a>
+    <a href="privacidade.html">Privacidade</a>
+    <a href="https://www.youtube.com/@controlequebrado_tv" target="_blank" rel="noopener">YouTube</a>
+  </nav>
+</footer>
+<script>
+// Botões "Copiar": copiam só os comandos, sem o "$" do início
+document.querySelectorAll('.copiar').forEach(function (botao) {
+  botao.addEventListener('click', function () {
+    var codigo = botao.parentNode.querySelector('code').cloneNode(true);
+    codigo.querySelectorAll('.prompt').forEach(function (p) { p.remove(); });
+    var texto = codigo.textContent.split('\n').map(function (l) { return l.trim(); }).join('\n').trim();
+    copiar(texto).then(function (ok) {
+      botao.textContent = ok ? 'Copiado!' : 'Não copiou';
+      setTimeout(function () { botao.textContent = 'Copiar'; }, 2000);
+    });
+  });
+});
+function copiar(texto) {
+  if (navigator.clipboard && window.isSecureContext) {
+    return navigator.clipboard.writeText(texto).then(function () { return true; }, function () { return copiarAntigo(texto); });
+  }
+  return Promise.resolve(copiarAntigo(texto));
+}
+function copiarAntigo(texto) {
+  var campo = document.createElement('textarea');
+  campo.value = texto; campo.style.position = 'fixed'; campo.style.opacity = '0';
+  document.body.appendChild(campo); campo.select();
+  var ok = false;
+  try { ok = document.execCommand('copy'); } catch (e) {}
+  campo.remove();
+  return ok;
+}
+</script>
+</body>
+</html>
