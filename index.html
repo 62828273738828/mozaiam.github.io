@@ -6,6 +6,7 @@
 <title>Controle Quebrado | PC, Games, Linux e Tecnologia</title>
 <meta name="description" content="Tutoriais em português de Linux, games, emulação e tecnologia, com os comandos prontos para copiar. Canal Controle Quebrado.">
 <meta name="theme-color" content="#0c0a10">
+<script>document.documentElement.classList.add('js');</script>
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="Controle Quebrado">
@@ -158,6 +159,29 @@ code { font: .95rem/1.5 var(--codigo); color: var(--rosa); }
 .noticia h3 { margin: .35rem 0 .6rem; font: 1.7rem/1.1 var(--titulo); letter-spacing: .02em; }
 .noticia p { margin: 0 0 .9rem; color: var(--texto-suave); font-size: 1rem; }
 
+/* 8f. EFEITOS LEVES (só CSS, quase nada para baixar) */
+@keyframes glitch {
+  0%, 100% { transform: translate(0); text-shadow: none; }
+  20% { transform: translate(-3px, 1px); text-shadow: 3px 0 var(--rosa), -3px 0 var(--texto); }
+  40% { transform: translate(3px, -1px); text-shadow: -3px 0 var(--rosa), 3px 0 var(--texto); }
+  60% { transform: translate(-2px, 0); text-shadow: 2px 0 var(--rosa); }
+  80% { transform: translate(2px, 1px); text-shadow: -2px 0 var(--texto); }
+}
+.hero h1 .destaque { animation: glitch .6s ease-in-out .4s 1; }
+.hero h1 .destaque:hover { animation: glitch .6s ease-in-out 1; }
+.video, .link-card { transition: border-color .2s, transform .2s; }
+.video:hover, .link-card:hover { transform: translateY(-4px); }
+.secao { transition: opacity .6s ease, transform .6s ease; }
+.js .secao:not(.visivel) { opacity: 0; transform: translateY(16px); }
+.som { margin-left: 1.5rem; padding: .3rem .7rem; background: none; border: 1px solid var(--borda); border-radius: 6px; color: var(--texto-suave); font: 600 .85rem var(--corpo); cursor: pointer; transition: color .2s, border-color .2s; }
+.som:hover { color: var(--texto); border-color: var(--rosa); }
+.som:focus-visible { outline: 3px solid var(--rosa); outline-offset: 2px; }
+/* quem prefere menos movimento no sistema não vê animações */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .js .secao:not(.visivel) { opacity: 1; transform: none; }
+}
+
 /* 8b. BLOCO DE COMANDO COM BOTÃO "COPIAR" */
 .bloco { position: relative; margin-top: .5rem; }
 .bloco pre { margin: 0; padding-right: 5.5rem; }
@@ -206,6 +230,7 @@ code { font: .95rem/1.5 var(--codigo); color: var(--rosa); }
     <a href="#tutorial">Tutorial</a>
     <a href="#downloads">Downloads</a>
     <a href="#sobre">Sobre</a>
+    <button type="button" id="som" class="som" aria-pressed="true">Som: ligado</button>
   </nav>
 </header>
 
@@ -425,12 +450,61 @@ document.querySelectorAll('pre').forEach(function (pre) {
     codigo.querySelectorAll('.prompt').forEach(function (p) { p.remove(); });
     var texto = codigo.textContent.split('\n').map(function (l) { return l.trim(); }).join('\n').trim();
     copiar(texto).then(function (ok) {
+      if (ok) tocarSom();
       botao.textContent = ok ? 'Copiado!' : 'Não copiou';
       botao.classList.toggle('ok', ok);
       setTimeout(function () { botao.textContent = 'Copiar'; botao.classList.remove('ok'); }, 2000);
     });
   });
 });
+
+// Som de clique gerado pelo navegador (nenhum arquivo para baixar)
+var somLigado = true;
+try { somLigado = localStorage.getItem('som') !== 'off'; } catch (e) {}
+var audioCtx = null;
+function tocarSom() {
+  if (!somLigado) return;
+  try {
+    audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+    var osc = audioCtx.createOscillator(), vol = audioCtx.createGain(), t = audioCtx.currentTime;
+    osc.type = 'square';
+    osc.frequency.setValueAtTime(660, t);
+    osc.frequency.setValueAtTime(990, t + 0.05);
+    vol.gain.setValueAtTime(0.04, t);
+    vol.gain.exponentialRampToValueAtTime(0.001, t + 0.12);
+    osc.connect(vol);
+    vol.connect(audioCtx.destination);
+    osc.start(t);
+    osc.stop(t + 0.12);
+  } catch (e) {}
+}
+
+// Botão que liga e desliga o som (a escolha fica salva no navegador)
+var botaoSom = document.getElementById('som');
+function mostrarSom() {
+  botaoSom.textContent = 'Som: ' + (somLigado ? 'ligado' : 'desligado');
+  botaoSom.setAttribute('aria-pressed', somLigado);
+}
+mostrarSom();
+botaoSom.addEventListener('click', function () {
+  somLigado = !somLigado;
+  try { localStorage.setItem('som', somLigado ? 'on' : 'off'); } catch (e) {}
+  mostrarSom();
+  tocarSom();
+});
+
+// As seções aparecem suavemente quando entram na tela
+var secoes = document.querySelectorAll('.secao');
+if ('IntersectionObserver' in window) {
+  var obs = new IntersectionObserver(function (itens) {
+    itens.forEach(function (i) {
+      if (i.isIntersecting) { i.target.classList.add('visivel'); obs.unobserve(i.target); }
+    });
+  }, { threshold: 0.1 });
+  secoes.forEach(function (s) { obs.observe(s); });
+} else {
+  secoes.forEach(function (s) { s.classList.add('visivel'); });
+}
 
 function copiar(texto) {
   if (navigator.clipboard && window.isSecureContext) {
