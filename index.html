@@ -231,6 +231,7 @@ code { font: .95rem/1.5 var(--codigo); color: var(--rosa); }
     <a href="#downloads">Downloads</a>
     <a href="#sobre">Sobre</a>
     <button type="button" id="som" class="som" aria-pressed="true">Som: ligado</button>
+    <button type="button" id="musica" class="som" aria-pressed="false">Ambiente: desligado</button>
   </nav>
 </header>
 
@@ -492,6 +493,96 @@ botaoSom.addEventListener('click', function () {
   try { localStorage.setItem('som', somLigado ? 'on' : 'off'); } catch (e) {}
   mostrarSom();
   tocarSom();
+});
+
+// Ambiente sombrio de terror, gerado pelo navegador (nenhum arquivo de música)
+var ambiente = null;
+function ligarAmbiente() {
+  audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+  var ctx = audioCtx, t = ctx.currentTime, parar = [];
+  if (ctx.state === 'suspended') ctx.resume();
+  var mestre = ctx.createGain();
+  mestre.gain.setValueAtTime(0, t);
+  mestre.gain.linearRampToValueAtTime(0.5, t + 3);
+  mestre.connect(ctx.destination);
+
+  // grave contínuo e dois tons que não combinam, para dar tensão
+  var filtro = ctx.createBiquadFilter();
+  filtro.type = 'lowpass';
+  filtro.frequency.value = 220;
+  filtro.connect(mestre);
+  [[55, 'sine', 0.25], [55.7, 'sawtooth', 0.08], [82.4, 'triangle', 0.06], [220, 'sine', 0.015], [233.1, 'sine', 0.015]].forEach(function (n) {
+    var o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = n[1]; o.frequency.value = n[0]; g.gain.value = n[2];
+    o.connect(g); g.connect(n[0] > 200 ? mestre : filtro);
+    o.start(); parar.push(o);
+  });
+  var lfo = ctx.createOscillator(), lfoG = ctx.createGain();
+  lfo.frequency.value = 0.07; lfoG.gain.value = 60;
+  lfo.connect(lfoG); lfoG.connect(filtro.frequency);
+  lfo.start(); parar.push(lfo);
+
+  // vento: ruído filtrado que sobe e desce devagar
+  var buf = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate), dados = buf.getChannelData(0);
+  for (var i = 0; i < dados.length; i++) dados[i] = Math.random() * 2 - 1;
+  var ruido = ctx.createBufferSource();
+  ruido.buffer = buf; ruido.loop = true;
+  var passa = ctx.createBiquadFilter();
+  passa.type = 'bandpass'; passa.frequency.value = 500; passa.Q.value = 0.6;
+  var vento = ctx.createGain();
+  vento.gain.value = 0.05;
+  var lfo2 = ctx.createOscillator(), lfo2G = ctx.createGain();
+  lfo2.frequency.value = 0.11; lfo2G.gain.value = 0.035;
+  lfo2.connect(lfo2G); lfo2G.connect(vento.gain);
+  ruido.connect(passa); passa.connect(vento); vento.connect(mestre);
+  lfo2.start(); ruido.start(); parar.push(lfo2, ruido);
+
+  ambiente = { mestre: mestre, parar: parar, timer: setTimeout(batida, 4000) };
+}
+
+// batida grave dupla, como um coração, de tempos em tempos
+function batida() {
+  if (!ambiente) return;
+  var ctx = audioCtx, t = ctx.currentTime;
+  [0, 0.28].forEach(function (atraso, k) {
+    var o = ctx.createOscillator(), g = ctx.createGain(), ini = t + atraso;
+    o.type = 'sine';
+    o.frequency.setValueAtTime(70, ini);
+    o.frequency.exponentialRampToValueAtTime(38, ini + 0.25);
+    g.gain.setValueAtTime(0.0001, ini);
+    g.gain.exponentialRampToValueAtTime(k ? 0.2 : 0.3, ini + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, ini + 0.3);
+    o.connect(g); g.connect(ambiente.mestre);
+    o.start(ini); o.stop(ini + 0.32);
+  });
+  ambiente.timer = setTimeout(batida, 6000 + Math.random() * 5000);
+}
+
+function desligarAmbiente() {
+  if (!ambiente) return;
+  var a = ambiente, t = audioCtx.currentTime;
+  ambiente = null;
+  clearTimeout(a.timer);
+  a.mestre.gain.cancelScheduledValues(t);
+  a.mestre.gain.setValueAtTime(a.mestre.gain.value, t);
+  a.mestre.gain.linearRampToValueAtTime(0, t + 1.5);
+  setTimeout(function () {
+    a.parar.forEach(function (n) { try { n.stop(); } catch (e) {} });
+    a.mestre.disconnect();
+  }, 1700);
+}
+
+var botaoMusica = document.getElementById('musica');
+botaoMusica.addEventListener('click', function () {
+  if (ambiente) { desligarAmbiente(); } else { ligarAmbiente(); }
+  botaoMusica.textContent = 'Ambiente: ' + (ambiente ? 'ligado' : 'desligado');
+  botaoMusica.setAttribute('aria-pressed', ambiente ? 'true' : 'false');
+});
+
+// o ambiente pausa quando a aba fica escondida
+document.addEventListener('visibilitychange', function () {
+  if (!ambiente || !audioCtx) return;
+  if (document.hidden) { audioCtx.suspend(); } else { audioCtx.resume(); }
 });
 
 // As seções aparecem suavemente quando entram na tela
