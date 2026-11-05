@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Qual driver de vídeo instalar no Linux Mint | Controle Quebrado</title>
+<meta name="description" content="Quiz rápido: escolha a marca da sua placa de vídeo e veja os comandos certos de driver para o Linux Mint.">
+<meta name="theme-color" content="#0c0a10">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600&display=swap">
+<style>
+/* Cores e fontes do canal (as mesmas da página inicial) */
+:root {
+  --fundo: #0c0a10; --superficie: #17131d; --borda: #2b2433;
+  --texto: #f4f1f6; --texto-suave: #b6adbf; --carmesim: #e3123f; --rosa: #ff5c8a;
+  --titulo: "Bebas Neue", "Arial Narrow", Impact, sans-serif;
+  --corpo: "Barlow", system-ui, sans-serif;
+  color-scheme: dark; box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { color-scheme: dark; } }
+:root[data-theme="dark"] { color-scheme: dark; }
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+*, *::before, *::after { box-sizing: inherit; }
+body { margin: 0; background: var(--fundo); color: var(--texto); font: 400 1.125rem/1.7 var(--corpo); }
+a { color: var(--rosa); }
+a:focus-visible { outline: 3px solid var(--rosa); outline-offset: 3px; }
+.container { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem; }
+.topo { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .75rem; padding-top: 1.25rem; padding-bottom: 1.25rem; }
+.logo { font: 1.7rem/1 var(--titulo); color: var(--texto); text-decoration: none; letter-spacing: .03em; }
+.topo a.voltar { color: var(--texto-suave); text-decoration: none; }
+.topo a.voltar:hover { color: var(--texto); }
+main { padding-block: 2rem 3.5rem; }
+h1 { margin: 0 0 .5rem; font: clamp(2.8rem, 9vw, 4.5rem)/1 var(--titulo); letter-spacing: .02em; }
+h1 span { color: var(--carmesim); }
+h2 { margin: 2.25rem 0 .5rem; font: 2rem/1.1 var(--titulo); letter-spacing: .02em; }
+p, li { color: var(--texto-suave); }
+p { margin: 0 0 1rem; }
+.atualizado { font-size: .95rem; }
+.btn { display: inline-block; padding: .8rem 1.4rem; border-radius: 6px; font-weight: 600; text-decoration: none; background: var(--carmesim); color: #fff; transition: background .2s; }
+.btn:hover { background: #b80d33; }
+.btn:focus-visible { outline: 3px solid var(--rosa); outline-offset: 3px; }
+.rodape { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .75rem; padding-top: 1.5rem; padding-bottom: 2rem; border-top: 1px solid var(--borda); color: var(--texto-suave); font-size: .95rem; }
+.rodape nav { display: flex; flex-wrap: wrap; gap: .4rem 1.25rem; }
+pre { margin: 0; padding: .8rem 5.5rem .8rem 1rem; overflow-x: auto; background: var(--fundo); border: 1px solid var(--borda); border-radius: 6px; }
+code { font: .95rem/1.5 ui-monospace, "Cascadia Code", Consolas, monospace; color: var(--rosa); }
+.prompt { color: var(--texto-suave); user-select: none; }
+.bloco { position: relative; margin: .5rem 0 1rem; }
+.copiar { position: absolute; top: .45rem; right: .45rem; padding: .3rem .7rem; background: var(--superficie); border: 1px solid var(--borda); border-radius: 6px; color: var(--texto-suave); font: 600 .85rem var(--corpo); cursor: pointer; transition: color .2s, border-color .2s; }
+.copiar:hover { color: var(--texto); border-color: var(--rosa); }
+.copiar:focus-visible { outline: 3px solid var(--rosa); outline-offset: 2px; }
+ol { padding-left: 1.25rem; }
+li { margin: .9rem 0; }
+.opcoes { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1rem 0 2rem; }
+.opcao { padding: .8rem 1.2rem; background: var(--superficie); border: 2px solid var(--borda); border-radius: 8px; color: var(--texto); font: 600 1rem var(--corpo); cursor: pointer; transition: border-color .2s; }
+.opcao:hover { border-color: var(--rosa); }
+.opcao[aria-pressed="true"] { border-color: var(--carmesim); }
+.opcao:focus-visible { outline: 3px solid var(--rosa); outline-offset: 3px; }
+#resultado:focus { outline: none; }
+.nota { font-size: .95rem; }
+</style>
+</head>
+<body>
+<header class="container topo">
+  <a class="logo" href="index.html">Controle Quebrado</a>
+  <a class="voltar" href="index.html">Voltar ao início</a>
+</header>
+<main class="container">
+<h1>Qual driver <span>eu instalo?</span></h1>
+<p>Escolha a marca da sua placa de vídeo e veja só os comandos certos para ela. Abra o terminal com <strong>Ctrl + Alt + T</strong>, clique em Copiar e cole.</p>
+<div id="quiz">
+  <h2 id="pergunta">Qual é a marca da sua placa de vídeo?</h2>
+  <div class="opcoes" role="group" aria-labelledby="pergunta">
+    <button type="button" class="opcao" data-marca="nvidia" aria-pressed="false">NVIDIA</button>
+    <button type="button" class="opcao" data-marca="amd" aria-pressed="false">AMD</button>
+    <button type="button" class="opcao" data-marca="intel" aria-pressed="false">Intel (vídeo integrado)</button>
+    <button type="button" class="opcao" data-marca="nao-sei" aria-pressed="false">Não sei</button>
+  </div>
+  <div id="resultado" aria-live="polite" tabindex="-1"></div>
+  <noscript><p>Este quiz precisa de JavaScript. Sem ele, veja todos os comandos no <a href="comandos.html#drivers">guia rápido de comandos</a>.</p></noscript>
+</div>
+<p class="nota">Mexer em drivers é delicado. Atualize o sistema primeiro e, se algo der errado, não repita os comandos sem entender o erro. Peça ajuda nos comentários do vídeo com os dados do <a href="comandos.html#ajuda">guia de comandos</a>. Notebooks com duas placas de vídeo podem precisar de ajustes extras que este quiz não cobre.</p>
+<p><a href="pcsx2-linux-mint.html">Voltar ao tutorial do PCSX2</a></p>
+</main>
+<footer class="container rodape">
+  <span>© 2026 Controle Quebrado</span>
+  <nav aria-label="Rodapé">
+    <a href="sobre.html">Sobre</a>
+    <a href="contato.html">Contato</a>
+    <a href="privacidade.html">Privacidade</a>
+    <a href="https://www.youtube.com/@controlequebrado_tv" target="_blank" rel="noopener">YouTube</a>
+  </nav>
+</footer>
+<script>
+// Os comandos de cada resposta ficam nesta lista. Para mudar o quiz, é só editar aqui.
+var ATUALIZAR = { t: 'Atualize o sistema', c: ['sudo apt update && sudo apt upgrade'] };
+var TESTE_VULKAN = { t: 'Teste o Vulkan', c: ['sudo apt install vulkan-tools', 'vulkaninfo --summary'] };
+var RESULTADOS = {
+  nvidia: {
+    titulo: 'Placa NVIDIA',
+    intro: 'O jeito mais fácil é o Gerenciador de Drivers do Linux Mint (Menu > Administração). Para fazer pelo terminal, siga estes passos.',
+    passos: [
+      ATUALIZAR,
+      { t: 'Veja os drivers disponíveis e qual é o recomendado', c: ['ubuntu-drivers devices'] },
+      { t: 'Instale o driver recomendado e reinicie o PC', c: ['sudo ubuntu-drivers autoinstall', 'sudo reboot'] },
+      { t: 'Depois de reiniciar, confira se o driver está funcionando', c: ['nvidia-smi'] },
+      TESTE_VULKAN
+    ],
+    nota: 'Depois de instalado, o driver NVIDIA recebe atualizações junto com as do sistema.'
+  },
+  amd: {
+    titulo: 'Placa AMD',
+    intro: 'O driver já vem com o sistema. Falta só completar o suporte ao Vulkan.',
+    passos: [
+      ATUALIZAR,
+      { t: 'Instale o suporte ao Vulkan', c: ['sudo apt install mesa-vulkan-drivers'] },
+      TESTE_VULKAN
+    ],
+    nota: 'Para manter o driver em dia, atualize o sistema de tempos em tempos.'
+  },
+  intel: {
+    titulo: 'Vídeo integrado Intel',
+    intro: 'O driver já vem com o sistema. Falta só completar o suporte ao Vulkan.',
+    passos: [
+      ATUALIZAR,
+      { t: 'Instale o suporte ao Vulkan', c: ['sudo apt install mesa-vulkan-drivers'] },
+      TESTE_VULKAN
+    ],
+    nota: 'Para manter o driver em dia, atualize o sistema de tempos em tempos.'
+  },
+  'nao-sei': {
+    titulo: 'Descubra a sua placa',
+    intro: 'Rode o comando abaixo e procure no resultado a palavra NVIDIA, AMD (ou Radeon) ou Intel. Depois escolha a marca acima.',
+    passos: [
+      { t: 'Veja o modelo da sua placa de vídeo', c: ['lspci | grep -E "VGA|3D"'] }
+    ],
+    nota: 'Se aparecerem duas placas (por exemplo, Intel e NVIDIA), o computador tem vídeo integrado e uma placa dedicada. Escolha a dedicada.'
+  }
+};
+
+function criarBloco(comandos) {
+  var bloco = document.createElement('div');
+  bloco.className = 'bloco';
+  var pre = document.createElement('pre'), code = document.createElement('code');
+  comandos.forEach(function (c, i) {
+    if (i > 0) code.appendChild(document.createTextNode('\n'));
+    var p = document.createElement('span');
+    p.className = 'prompt'; p.textContent = '$';
+    code.appendChild(p);
+    code.appendChild(document.createTextNode(' ' + c));
+  });
+  pre.appendChild(code);
+  bloco.appendChild(pre);
+  var botao = document.createElement('button');
+  botao.type = 'button'; botao.className = 'copiar'; botao.textContent = 'Copiar';
+  botao.addEventListener('click', function () {
+    copiar(comandos.join('\n')).then(function (ok) {
+      botao.textContent = ok ? 'Copiado!' : 'Não copiou';
+      setTimeout(function () { botao.textContent = 'Copiar'; }, 2000);
+    });
+  });
+  bloco.appendChild(botao);
+  return bloco;
+}
+
+function mostrar(marca) {
+  var r = RESULTADOS[marca], area = document.getElementById('resultado');
+  area.textContent = '';
+  var h = document.createElement('h2'); h.textContent = r.titulo; area.appendChild(h);
+  var intro = document.createElement('p'); intro.textContent = r.intro; area.appendChild(intro);
+  var lista = document.createElement('ol');
+  r.passos.forEach(function (passo) {
+    var li = document.createElement('li');
+    var t = document.createElement('strong'); t.textContent = passo.t + ':';
+    li.appendChild(t);
+    li.appendChild(criarBloco(passo.c));
+    lista.appendChild(li);
+  });
+  area.appendChild(lista);
+  var nota = document.createElement('p'); nota.className = 'nota'; nota.textContent = r.nota; area.appendChild(nota);
+  area.focus();
+}
+
+document.querySelectorAll('.opcao').forEach(function (botao) {
+  botao.addEventListener('click', function () {
+    document.querySelectorAll('.opcao').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+    botao.setAttribute('aria-pressed', 'true');
+    mostrar(botao.getAttribute('data-marca'));
+  });
+});
+
+function copiar(texto) {
+  if (navigator.clipboard && window.isSecureContext) {
+    return navigator.clipboard.writeText(texto).then(function () { return true; }, function () { return copiarAntigo(texto); });
+  }
+  return Promise.resolve(copiarAntigo(texto));
+}
+function copiarAntigo(texto) {
+  var campo = document.createElement('textarea');
+  campo.value = texto; campo.style.position = 'fixed'; campo.style.opacity = '0';
+  document.body.appendChild(campo); campo.select();
+  var ok = false;
+  try { ok = document.execCommand('copy'); } catch (e) {}
+  campo.remove();
+  return ok;
+}
+</script>
+</body>
+</html>
