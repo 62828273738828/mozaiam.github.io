@@ -295,101 +295,17 @@ code { font: .95rem/1.5 var(--codigo); color: var(--rosa); }
     </div>
   </section>
 
-  <!-- TUTORIAL ESCRITO: texto + comandos do terminal -->
+  <!-- TUTORIAIS E GUIAS: cada cartão leva para uma página -->
   <section id="tutorial" class="secao container">
-    <h2>Tutorial escrito</h2>
-    <p class="sub">Além do vídeo, você encontra o passo a passo em texto, com os comandos prontos. Veja também o <a href="comandos.html">guia rápido de comandos</a>, o tutorial de <a href="texturas-hd-pcsx2.html">texturas HD no PCSX2</a> e o <a href="quiz-driver.html">quiz: qual driver instalar</a>.</p>
-    <article class="tutorial">
-      <h3>Atualizar o sistema</h3>
-      <ol>
-        <li>Abra o terminal com <strong>Ctrl + Alt + T</strong> e atualize a lista de pacotes e os programas:
-          <pre><code><span class="prompt">$</span> sudo apt update && sudo apt upgrade</code></pre>
-        </li>
-        <li>Remova pacotes que não são mais necessários (opcional):
-          <pre><code><span class="prompt">$</span> sudo apt autoremove</code></pre>
-        </li>
-        <li>Atualize também os programas instalados pelo Flatpak:
-          <pre><code><span class="prompt">$</span> flatpak update</code></pre>
-        </li>
-      </ol>
-      <p class="nota">O Gerenciador de Atualizações do Linux Mint faz o mesmo pela interface gráfica.</p>
-    </article>
-
-    <article class="tutorial">
-      <h3>Instalar e atualizar drivers de vídeo</h3>
-      <p class="nota">O jeito mais fácil é o Gerenciador de Drivers do Linux Mint (Menu > Administração). Para fazer pelo terminal, siga os passos abaixo.</p>
-      <ol>
-        <li>Descubra qual placa de vídeo você tem:
-          <pre><code><span class="prompt">$</span> lspci | grep -E "VGA|3D"</code></pre>
-        </li>
-        <li>Placa NVIDIA: veja os drivers disponíveis e qual é o recomendado:
-          <pre><code><span class="prompt">$</span> ubuntu-drivers devices</code></pre>
-        </li>
-        <li>Instale o driver recomendado e reinicie o PC:
-          <pre><code><span class="prompt">$</span> sudo ubuntu-drivers autoinstall
-<span class="prompt">$</span> sudo reboot</code></pre>
-        </li>
-        <li>Depois de reiniciar, confira se o driver NVIDIA está funcionando:
-          <pre><code><span class="prompt">$</span> nvidia-smi</code></pre>
-        </li>
-        <li>Placa AMD ou Intel: o driver já vem com o sistema. Instale o suporte ao Vulkan:
-          <pre><code><span class="prompt">$</span> sudo apt install mesa-vulkan-drivers</code></pre>
-        </li>
-        <li>Teste o Vulkan (vale para todas as placas):
-          <pre><code><span class="prompt">$</span> sudo apt install vulkan-tools
-<span class="prompt">$</span> vulkaninfo --summary</code></pre>
-        </li>
-      </ol>
-      <p class="nota">Depois de instalado, o driver NVIDIA recebe atualizações junto com as do sistema (veja o bloco acima).</p>
-    </article>
-
-    <article class="tutorial">
-      <h3>Instalar o PCSX2 com AppImage</h3>
-      <p class="video-link"><a href="https://youtu.be/PH1RXucMReg" target="_blank" rel="noopener">Assista ao vídeo completo deste tutorial no YouTube</a> ou veja a <a href="pcsx2-linux-mint.html">página completa do tutorial</a>.</p>
-      <ol>
-        <li>Baixe o AppImage do PCSX2 para Linux no site oficial, <strong>pcsx2.net</strong>.</li>
-        <li>Abra o terminal com <strong>Ctrl + Alt + T</strong> e entre na pasta onde salvou o arquivo (aqui, Downloads):
-          <pre><code><span class="prompt">$</span> cd ~/Downloads</code></pre>
-        </li>
-        <li>Dê permissão para o arquivo ser executado:
-          <pre><code><span class="prompt">$</span> chmod +x pcsx2-*.AppImage</code></pre>
-        </li>
-        <li>Abra o PCSX2:
-          <pre><code><span class="prompt">$</span> ./pcsx2-*.AppImage</code></pre>
-        </li>
-      </ol>
-      <p class="nota">O nome do arquivo muda a cada versão, e o * completa o nome. Se houver mais de uma versão na pasta, digite o nome completo.</p>
-      <p class="nota">Se o PCSX2 não abrir, falta a biblioteca FUSE 2 que os AppImages usam. No Linux Mint 22 ou mais novo, instale:</p>
-      <pre><code><span class="prompt">$</span> sudo apt install libfuse2t64</code></pre>
-      <p class="nota">No Linux Mint 21, o pacote se chama <code>libfuse2</code>. Não instale o pacote <code>fuse</code>, porque ele pode causar problemas no sistema.</p>
-    </article>
-
-    <article class="tutorial">
-      <h3>Instalar o PCSX2 com Flatpak</h3>
-      <ol>
-        <li>Abra o terminal com <strong>Ctrl + Alt + T</strong> e instale o emulador:
-          <pre><code><span class="prompt">$</span> flatpak install flathub net.pcsx2.PCSX2</code></pre>
-        </li>
-        <li>Abra o PCSX2:
-          <pre><code><span class="prompt">$</span> flatpak run net.pcsx2.PCSX2</code></pre>
-        </li>
-        <li>Para atualizar só o PCSX2 depois:
-          <pre><code><span class="prompt">$</span> flatpak update net.pcsx2.PCSX2</code></pre>
-        </li>
-      </ol>
-    </article>
-
-    <article class="tutorial">
-      <h3>Conseguir a BIOS do PS2</h3>
-      <p class="nota">O PCSX2 não vem com a BIOS, porque ela é protegida por direitos autorais. Ela precisa ser extraída do seu próprio PS2, seguindo o método da documentação oficial.</p>
-      <ol>
-        <li>Abra a documentação oficial em <a href="https://pcsx2.net/docs" target="_blank" rel="noopener">pcsx2.net/docs</a> e procure a página sobre a BIOS.</li>
-        <li>Siga o método indicado para extrair a BIOS do seu console.</li>
-        <li>No PCSX2, abra <strong>Configurações &gt; BIOS</strong> e selecione a pasta onde você salvou o arquivo.</li>
-      </ol>
-      <p class="nota">Quer mais detalhes? Veja o <a href="bios.html">guia completo com perguntas frequentes</a>.</p>
-      <p class="nota">Neste site não compartilhamos nem indicamos arquivos de BIOS para download.</p>
-    </article>
+    <h2>Tutoriais e guias</h2>
+    <p class="sub">O passo a passo em texto, com os comandos prontos para copiar.</p>
+    <div class="links">
+      <a class="link-card" href="pcsx2-linux-mint.html"><strong>PCSX2 no Linux Mint</strong><span>Instalação com AppImage, dependências e a alternativa em Flatpak.</span></a>
+      <a class="link-card" href="texturas-hd-pcsx2.html"><strong>Texturas HD no PCSX2</strong><span>Como aplicar pacotes de texturas e ajustar os gráficos.</span></a>
+      <a class="link-card" href="bios.html"><strong>BIOS do PS2</strong><span>Como conseguir do jeito certo, com perguntas frequentes.</span></a>
+      <a class="link-card" href="comandos.html"><strong>Guia rápido de comandos</strong><span>Sistema, drivers, AppImage e Flatpak, com botão de copiar.</span></a>
+      <a class="link-card" href="quiz-driver.html"><strong>Qual driver eu instalo?</strong><span>Quiz: escolha a placa de vídeo e veja os comandos certos.</span></a>
+    </div>
   </section>
 
   <!-- DOWNLOADS E LINKS ÚTEIS: sempre fontes oficiais -->
@@ -426,6 +342,7 @@ code { font: .95rem/1.5 var(--codigo); color: var(--rosa); }
   <nav aria-label="Rodapé">
     <a href="sobre.html">Sobre</a>
     <a href="comandos.html">Comandos</a>
+    <a href="quiz-driver.html">Quiz de driver</a>
     <a href="contato.html">Contato</a>
     <a href="privacidade.html">Privacidade</a>
     <a href="https://www.youtube.com/@controlequebrado_tv" target="_blank" rel="noopener">YouTube</a>
