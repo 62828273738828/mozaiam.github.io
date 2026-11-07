@@ -19,8 +19,12 @@
 <meta property="og:image:alt" content="Controle Quebrado: PC, games, Linux e tecnologia, com o mascote encapuzado segurando um controle rachado">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0c0a10">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600&display=swap">
+<link rel="preload" href="fontes/BebasNeue-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fontes/Barlow-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+@font-face { font-family: "Bebas Neue"; src: url("fontes/BebasNeue-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Barlow"; src: url("fontes/Barlow-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Barlow"; src: url("fontes/Barlow-SemiBold.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
 /* Cores e fontes do canal (as mesmas da página inicial) */
 :root {
   --fundo: #0c0a10; --superficie: #17131d; --borda: #2b2433;
@@ -54,6 +58,11 @@ p { margin: 0 0 1rem; }
 .btn:focus-visible { outline: 3px solid var(--rosa); outline-offset: 3px; }
 .rodape { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .75rem; padding-top: 1.5rem; padding-bottom: 2rem; border-top: 1px solid var(--borda); color: var(--texto-suave); font-size: .95rem; }
 .rodape nav { display: flex; flex-wrap: wrap; gap: .4rem 1.25rem; }
+.logo { display: flex; align-items: center; gap: .6rem; }
+.logo img { width: 40px; height: 40px; border-radius: 50%; }
+.topo nav { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; }
+.topo nav a { color: var(--texto-suave); text-decoration: none; }
+.topo nav a:hover { color: var(--texto); }
 pre { margin: 0; padding: .8rem 5.5rem .8rem 1rem; overflow-x: auto; background: var(--fundo); border: 1px solid var(--borda); border-radius: 6px; }
 code { font: .95rem/1.5 ui-monospace, "Cascadia Code", Consolas, monospace; color: var(--rosa); }
 .prompt { color: var(--texto-suave); user-select: none; }
@@ -64,16 +73,6 @@ code { font: .95rem/1.5 ui-monospace, "Cascadia Code", Consolas, monospace; colo
 h2[id] { scroll-margin-top: 1rem; }
 ol { padding-left: 1.25rem; }
 li { margin: .75rem 0; }
-.video-destaque { display: block; margin: 1.25rem 0; overflow: hidden; color: var(--texto); text-decoration: none; border: 1px solid var(--borda); border-radius: 10px; transition: border-color .2s; }
-.video-destaque:hover { border-color: var(--carmesim); }
-.video-destaque img { display: block; width: 100%; height: auto; }
-.video-destaque span { display: block; padding: .8rem 1rem; background: var(--superficie); font-weight: 600; }
-.atualizado { font-size: .95rem; }
-.logo { display: flex; align-items: center; gap: .6rem; }
-.logo img { width: 40px; height: 40px; border-radius: 50%; }
-.topo nav { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; }
-.topo nav a { color: var(--texto-suave); text-decoration: none; }
-.topo nav a:hover { color: var(--texto); }
 </style>
 </head>
 <body>

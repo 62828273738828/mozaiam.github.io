@@ -19,8 +19,12 @@
 <meta property="og:image:alt" content="Controle Quebrado: PC, games, Linux e tecnologia, com o mascote encapuzado segurando um controle rachado">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0c0a10">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600&display=swap">
+<link rel="preload" href="fontes/BebasNeue-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fontes/Barlow-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+@font-face { font-family: "Bebas Neue"; src: url("fontes/BebasNeue-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Barlow"; src: url("fontes/Barlow-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Barlow"; src: url("fontes/Barlow-SemiBold.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
 /* Cores e fontes do canal (as mesmas da página inicial) */
 :root {
   --fundo: #0c0a10; --superficie: #17131d; --borda: #2b2433;
@@ -80,7 +84,7 @@ p { margin: 0 0 1rem; }
 <p>O site não tem cadastro, login, comentários nem formulários, e não pede nome, e-mail ou outros dados pessoais. Hoje ele também não usa cookies próprios, ferramentas de análise ou anúncios.</p>
 <p>Se você escrever para o nosso e-mail, receberemos o seu endereço e a sua mensagem, que usamos apenas para responder.</p>
 <h2>Dados técnicos de acesso</h2>
-<p>O site é hospedado no GitHub Pages. Ao acessar qualquer site, o servidor recebe dados técnicos do seu navegador, como o endereço IP, e o GitHub pode registrá-los conforme a política de privacidade dele. O site também carrega fontes do Google Fonts, o que faz o seu navegador se conectar a servidores do Google. Para saber mais, consulte as políticas de privacidade do GitHub e do Google.</p>
+<p>O site é hospedado no GitHub Pages. Ao acessar qualquer site, o servidor recebe dados técnicos do seu navegador, como o endereço IP, e o GitHub pode registrá-los conforme a política de privacidade dele. As fontes do site ficam hospedadas no próprio site, então o seu navegador não precisa se conectar ao Google para carregá-las. Para saber mais, consulte a política de privacidade do GitHub.</p>
 <h2>Links externos</h2>
 <p>O site tem links para outros endereços, como YouTube, PCSX2, Flathub e Linux Mint. Cada um deles tem a sua própria política de privacidade, e não somos responsáveis por ela.</p>
 <h2>Anúncios e mudanças futuras</h2>
