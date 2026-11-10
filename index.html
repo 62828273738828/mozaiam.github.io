@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Controle Quebrado | Linux, emulação e jogos recompilados</title>
+<meta name="description" content="Guias e notícias em português sobre Linux, emulação, jogos recompilados e games, com os comandos prontos para copiar. Canal Controle Quebrado.">
+<link rel="canonical" href="https://62828273738828.github.io/mozaiam.github.io/">
+<link rel="icon" href="icone.png">
+<meta name="theme-color" content="#0c0a10">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Controle Quebrado">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Controle Quebrado | Linux, emulação e jogos recompilados">
+<meta property="og:description" content="Guias e notícias em português sobre Linux, emulação, jogos recompilados e games, com os comandos prontos para copiar.">
+<meta property="og:url" content="https://62828273738828.github.io/mozaiam.github.io/">
+<meta property="og:image" content="https://62828273738828.github.io/mozaiam.github.io/preview.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<script src="site.js" defer></script>
+<style>
+:root{--bg:#0c0a10;--panel:#17131f;--line:#2a2335;--text:#ece8f2;--mute:#a39cb3;--accent:#ffb454;--violet:#8b5cf6;
+--display:"Bricolage Grotesque",system-ui,sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-padding-top:4.5rem}
+body{background:var(--bg);color:var(--text);font:1rem/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:inherit;text-decoration:none}
+a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 1.25rem}
+h1,h2,h3{font-family:var(--display);line-height:1.15}
+.hero{display:grid;grid-template-columns:1.6fr 1fr;gap:1.25rem;padding:2rem 0}
+.lead{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:10px;background:linear-gradient(160deg,#241a38,#120e1a);padding:2rem;min-height:340px;display:flex;flex-direction:column;justify-content:flex-end}
+.lead svg{position:absolute;inset:0;width:100%;height:100%}
+.lead>*:not(svg){position:relative}
+.lead h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;max-width:18ch;margin:.5rem 0}
+.lead p{color:var(--mute);max-width:52ch}
+.tag{display:inline-block;color:var(--accent);font-size:.85rem;font-weight:600}
+.side{display:grid;gap:1rem;align-content:start}
+.item{border-top:1px solid var(--line);padding-top:.9rem}
+.item h3{font-size:1.1rem;font-weight:600;margin:.2rem 0}
+.item time,.meta{color:var(--mute);font-size:.85rem}
+section.block{padding:1.5rem 0;border-top:1px solid var(--line)}
+.head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1rem}
+.head h2{font-size:1.5rem;font-weight:800}
+.head a{color:var(--accent);font-size:.9rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.25rem}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:block}
+.card:hover{border-color:var(--violet)}
+.thumb{position:relative;aspect-ratio:16/9;background:linear-gradient(135deg,#2b2040,#15101e);display:grid;place-items:center;color:var(--mute);font-size:.8rem}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.dur{position:absolute;right:.5rem;bottom:.5rem;background:rgba(0,0,0,.8);color:#fff;font-size:.78rem;padding:.05rem .4rem;border-radius:4px}
+.card .t{padding:1rem}
+.card h3{font-size:1.05rem;font-weight:600;margin:.25rem 0 .4rem}
+.two{display:grid;grid-template-columns:1.6fr 1fr;gap:2rem}
+.rank{list-style:none;padding:0;counter-reset:r}
+.rank li{counter-increment:r;display:flex;gap:.8rem;padding:.7rem 0;border-top:1px solid var(--line)}
+.rank li::before{content:counter(r);font:800 1.4rem var(--display);color:var(--violet);min-width:1.4rem}
+.cta{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:1.5rem;display:flex;gap:1rem;justify-content:space-between;align-items:center;flex-wrap:wrap;margin:1rem 0 2rem}
+.cta h2{font-size:1.3rem}
+.cta p{color:var(--mute)}
+.btn{background:var(--violet);color:#fff;padding:.6rem 1.1rem;border-radius:6px;font-weight:600}
+.draft{font-size:.78rem;color:var(--mute);border:1px dashed var(--line);border-radius:4px;padding:0 .4rem;margin-left:.4rem}
+@media(max-width:800px){.hero,.two{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="hero">
+    <a class="lead" href="#">
+      <svg viewBox="0 0 400 340" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
+        <path d="M290 0 L262 70 L300 100 L248 190 L282 215 L236 340" fill="none" stroke="#ffb454" stroke-width="3" stroke-linejoin="round" opacity=".7"/>
+        <path d="M262 70 L330 82 M248 190 L205 170" fill="none" stroke="#ffb454" stroke-width="2" opacity=".5"/>
+      </svg>
+      <span class="tag">Linux</span>
+      <h1>Linux Mint 27 “Adrien” chega no Natal</h1>
+      <p>O próximo Mint muda de número, passa a ter um lançamento por ano e usa a base do Ubuntu 26.04 LTS.</p>
+    </a>
+    <div class="side">
+      <a class="item" href="#"><span class="tag">Games no Linux</span><h3>Linux chega perto de 4% na pesquisa da Steam</h3><time>2 de novembro</time></a>
+      <a class="item" href="#"><span class="tag">Linux</span><h3>Kernel 7.3 ajuda placas de vídeo com pouca memória</h3><time>19 de outubro</time></a>
+      <a class="item" href="#"><span class="tag">Emulação</span><h3>PCSX2 2.8 chega com foco em desempenho</h3><time>28 de agosto</time></a>
+    </div>
+  </div>
+
+  <section class="block" id="videos">
+    <div class="head"><h2>Vídeos recentes</h2><a href="https://www.youtube.com/@controlequebrado_tv/videos">Ver todos no YouTube</a></div>
+    <div class="grid">
+      <a class="card" href="https://youtu.be/AR_d2aNd7fA"><div class="thumb"><img src="https://i.ytimg.com/vi/AR_d2aNd7fA/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="dur">10:09</span></div><div class="t"><h3>Como Instalar Texturas HD no PCSX2 e Melhorar os Gráficos do PS2!</h3></div></a>
+      <a class="card" href="https://youtu.be/PH1RXucMReg"><div class="thumb"><img src="https://i.ytimg.com/vi/PH1RXucMReg/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="dur">14:02</span></div><div class="t"><h3>Como Instalar e Configurar o PCSX2 no Linux Mint | Tutorial Completo 2026</h3></div></a>
+      <a class="card" href="https://youtu.be/RZxX1y8OarM"><div class="thumb"><img src="https://i.ytimg.com/vi/RZxX1y8OarM/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="dur">12:06</span></div><div class="t"><h3>Rode Todos os Jogos No Linux</h3></div></a>
+      <a class="card" href="https://youtu.be/vZ4jirXQUNo"><div class="thumb"><img src="https://i.ytimg.com/vi/vZ4jirXQUNo/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="dur">6:13</span></div><div class="t"><h3>Roblox com melhor desempenho em 2026</h3></div></a>
+    </div>
+  </section>
+
+  <section class="block" id="recompilados">
+    <div class="head"><h2>Jogos recompilados</h2><a href="#">Ver todos</a></div>
+    <div class="grid">
+      <a class="card" href="#"><div class="thumb">imagem</div><div class="t"><span class="tag">Guia</span><span class="draft">exemplo</span><h3>Zelda 64: Recompiled no Linux Mint, passo a passo</h3><p class="meta">Com os comandos para copiar</p></div></a>
+      <a class="card" href="#"><div class="thumb">imagem</div><div class="t"><span class="tag">Explicado</span><span class="draft">exemplo</span><h3>O que são jogos recompilados e por que estão em alta</h3><p class="meta">Diferença para emulador e port</p></div></a>
+      <a class="card" href="#"><div class="thumb">imagem</div><div class="t"><span class="tag">Guia</span><span class="draft">exemplo</span><h3>Como extrair a ROM do seu próprio jogo</h3><p class="meta">Sem baixar nada de terceiros</p></div></a>
+    </div>
+  </section>
+
+  <section class="block" id="emulacao">
+    <div class="head"><h2>Emulação</h2><a href="#">Ver tudo</a></div>
+    <div class="grid">
+      <a class="card" href="pcsx2-linux-mint.html"><div class="t"><span class="tag">Guia</span><h3>PCSX2 no Linux Mint</h3><p class="meta">AppImage, dependências e Flatpak</p></div></a>
+      <a class="card" href="texturas-hd-pcsx2.html"><div class="t"><span class="tag">Guia</span><h3>Texturas HD no PCSX2</h3><p class="meta">Pacotes de texturas e ajustes gráficos</p></div></a>
+      <a class="card" href="bios.html"><div class="t"><span class="tag">Guia</span><h3>BIOS do PS2: como conseguir do jeito certo</h3><p class="meta">Com perguntas frequentes</p></div></a>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="two">
+      <div id="linux">
+        <div class="head"><h2>Linux para jogar</h2><a href="comandos.html">Todos os comandos</a></div>
+        <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">
+          <a class="card" href="comandos.html"><div class="t"><span class="tag">Referência</span><h3>Guia rápido de comandos</h3><p class="meta">Botão de copiar em cada um</p></div></a>
+          <a class="card" href="quiz-driver.html"><div class="t"><span class="tag">Ferramenta</span><h3>Qual driver eu instalo?</h3><p class="meta">Escolha a placa e veja os comandos</p></div></a>
+        </div>
+      </div>
+      <div>
+        <div class="head"><h2>Mais lidas</h2></div>
+        <ol class="rank">
+          <li><a href="pcsx2-linux-mint.html">PCSX2 no Linux Mint</a></li>
+          <li><a href="comandos.html">Guia rápido de comandos</a></li>
+          <li><a href="texturas-hd-pcsx2.html">Texturas HD no PCSX2</a></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta">
+    <div><h2>Receba os guias novos</h2><p>Aviso de cada guia e notícia, sem spam.</p></div>
+    <a class="btn" href="contato.html">Quero receber</a>
+  </div>
+</main>
+<noscript><p style="padding:1rem;color:#a39cb3">Ative o JavaScript para ver o menu. Acesso direto: <a href="comandos.html" style="text-decoration:underline">Comandos</a>, <a href="quiz-driver.html" style="text-decoration:underline">Quiz de driver</a>, <a href="sobre.html" style="text-decoration:underline">Sobre</a>.</p></noscript>
+</body>
+</html>
