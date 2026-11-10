@@ -63,17 +63,36 @@ p { margin: 0 0 1rem; }
 .topo nav { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; }
 .topo nav a { color: var(--texto-suave); text-decoration: none; }
 .topo nav a:hover { color: var(--texto); }
+/* Cabeçalho e rodapé compartilhados (iguais em todas as páginas) */
+.top,.bot{--h-bg:#0c0a10;--h-line:#2b2433;--h-text:#f4f1f6;--h-mute:#b6adbf;--h-rosa:#ff5c8a;--h-car:#e3123f;font:400 1rem/1.5 "Barlow",system-ui,sans-serif}
+.top a,.bot a{text-decoration:none}
+.top a:focus-visible,.bot a:focus-visible{outline:3px solid var(--h-rosa);outline-offset:3px}
+.top{position:sticky;top:0;z-index:50;background:var(--h-bg);border-bottom:1px solid var(--h-line)}
+.top .wrap,.bot .wrap{max-width:1120px;margin:0 auto;padding:0 1.25rem}
+.bar{display:flex;align-items:center;gap:1.25rem;min-height:4rem;flex-wrap:nowrap;padding-block:.35rem}
+.top .logo{flex:none;white-space:nowrap;display:flex;align-items:center;gap:.6rem;font:1.7rem/1 "Bebas Neue","Arial Narrow",Impact,sans-serif;letter-spacing:.03em;color:var(--h-text)}
+.top .logo img{width:40px;height:40px;border-radius:50%}
+.menu{display:flex;gap:.25rem 1.1rem;flex-wrap:wrap;flex:1 1 auto;min-width:0}
+.menu a{color:var(--h-mute)}
+.menu a:hover,.menu a[aria-current="page"]{color:var(--h-text)}
+.menu a[aria-current="page"]{text-decoration:underline;text-decoration-color:var(--h-rosa);text-underline-offset:6px}
+.top .sub{margin-left:auto;white-space:nowrap;flex:none;background:var(--h-car);color:#fff;font-weight:600;padding:.45rem 1rem;border-radius:6px;font-size:.95rem}
+.top .sub:hover{background:#b80d33}
+.bot{border-top:1px solid var(--h-line);padding:1.5rem 0 2rem;color:var(--h-mute);font-size:.95rem;background:var(--h-bg)}
+.bot .wrap{display:flex;flex-wrap:wrap;gap:.75rem 1.5rem;justify-content:space-between}
+.bot nav{display:flex;flex-wrap:wrap;gap:.4rem 1.25rem}
+.bot a{color:var(--h-mute)}
+.bot a:hover{color:var(--h-text)}
+@media(max-width:800px){.top{position:static}.bar{flex-wrap:wrap}.menu{flex:1 1 100%;order:3}.top .sub{margin-left:auto}}
 </style>
 </head>
 <body>
-<header class="container topo">
-  <a class="logo" href="index.html"><img src="icone.png" alt="" width="40" height="40">Controle Quebrado</a>
-  <nav aria-label="Menu principal">
-    <a href="index.html">Início</a>
-    <a href="index.html#videos">Vídeos</a>
-    <a href="index.html#tutorial">Tutoriais</a>
-    <a href="comandos.html">Comandos</a>
-  </nav>
+<header class="top">
+  <div class="wrap bar">
+    <a class="logo" href="index.html"><img src="icone.png" alt="" width="40" height="40">Controle Quebrado</a>
+    <nav class="menu" aria-label="Principal"><a href="index.html#videos">Vídeos</a><a href="index.html#emulacao">Emulação</a><a href="index.html#recompilados">Recompilados</a><a href="index.html#linux">Linux</a><a href="comandos.html">Comandos</a><a href="quiz-driver.html">Quiz de driver</a></nav>
+    <a class="sub" href="https://www.youtube.com/@controlequebrado_tv">Inscreva-se no canal</a>
+  </div>
 </header>
 <main class="container">
 <h1>Sobre o <span>canal</span></h1>
@@ -94,16 +113,13 @@ p { margin: 0 0 1rem; }
 <p>Usamos apenas fontes oficiais. Não hospedamos nem indicamos arquivos de BIOS, ROMs ou jogos piratas. Para usar o PCSX2, você precisa da BIOS extraída do seu próprio PS2 e de jogos que você tenha legalmente.</p>
 <p><a class="btn" href="https://www.youtube.com/@controlequebrado_tv" target="_blank" rel="noopener">Inscreva-se no canal</a></p>
 </main>
-<footer class="container rodape">
-  <span>© 2026 Controle Quebrado</span>
-  <nav aria-label="Rodapé">
-    <a href="sobre.html">Sobre</a>
-    <a href="comandos.html">Comandos</a>
-    <a href="quiz-driver.html">Quiz de driver</a>
-    <a href="contato.html">Contato</a>
-    <a href="privacidade.html">Privacidade</a>
-    <a href="https://www.youtube.com/@controlequebrado_tv" target="_blank" rel="noopener">YouTube</a>
-  </nav>
+<footer class="bot">
+  <div class="wrap">
+    <span>© 2026 Controle Quebrado</span>
+    <nav aria-label="Rodapé">
+      <a href="sobre.html">Sobre</a><a href="comandos.html">Comandos</a><a href="quiz-driver.html">Quiz de driver</a><a href="contato.html">Contato</a><a href="privacidade.html">Privacidade</a><a href="https://www.youtube.com/@controlequebrado_tv" target="_blank" rel="noopener">YouTube</a>
+    </nav>
+  </div>
 </footer>
 </body>
 </html>

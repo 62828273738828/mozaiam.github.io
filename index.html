@@ -7,7 +7,7 @@
 <meta name="description" content="Tutoriais em português de Linux, games, emulação e tecnologia, com os comandos prontos para copiar. Canal Controle Quebrado.">
 <link rel="canonical" href="https://62828273738828.github.io/mozaiam.github.io/">
 <link rel="icon" href="icone.png">
-<meta name="theme-color" content="#0a090d">
+<meta name="theme-color" content="#0c0a10">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Controle Quebrado">
 <meta property="og:locale" content="pt_BR">
@@ -19,46 +19,57 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Controle Quebrado: PC, games, Linux e tecnologia, com o mascote encapuzado segurando um controle rachado">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&display=swap" rel="stylesheet">
+<link rel="preload" href="fontes/BebasNeue-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fontes/Barlow-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-:root{--bg:#0a090d;--panel:#14111a;--line:#2a2030;--text:#efeaf3;--mute:#a89fb5;--accent:#ff3d6e;--ink:#16060b;
---display:"Bricolage Grotesque",system-ui,sans-serif}
+@font-face{font-family:"Bebas Neue";src:url("fontes/BebasNeue-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Barlow";src:url("fontes/Barlow-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Barlow";src:url("fontes/Barlow-SemiBold.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}
+:root{--bg:#0c0a10;--panel:#17131d;--line:#2b2433;--text:#f4f1f6;--mute:#b6adbf;--accent:#ff5c8a;--car:#e3123f;--display:"Bebas Neue","Arial Narrow",Impact,sans-serif;--body:"Barlow",system-ui,sans-serif}
 *{box-sizing:border-box;margin:0}
 html{scroll-padding-top:4.5rem}
-body{background:var(--bg);color:var(--text);font:1rem/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body{background:var(--bg);color:var(--text);font:400 1.125rem/1.6 var(--body)}
 a{color:inherit;text-decoration:none}
 a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .wrap{max-width:1120px;margin:0 auto;padding:0 1.25rem}
-h1,h2,h3{font-family:var(--display);line-height:1.15}
-.top{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
-.bar{display:flex;align-items:center;gap:1.5rem;min-height:3.5rem;flex-wrap:wrap;padding-block:.25rem}
-.logo{display:flex;align-items:center;gap:.6rem;font:800 1.25rem var(--display)}
-.logo img{display:block;border-radius:8px}
-.menu{display:flex;gap:1.1rem;flex-wrap:wrap;color:var(--mute);font-size:.95rem}
-.menu a:hover{color:var(--text)}
-.bar .btn{margin-left:auto;padding:.4rem .9rem;font-size:.9rem}
-.bot{border-top:1px solid var(--line);padding:1.5rem 0 calc(2.5rem + env(safe-area-inset-bottom,0px));color:var(--mute);font-size:.9rem}
-.bot .wrap{display:flex;flex-wrap:wrap;gap:1rem 1.5rem;justify-content:space-between}
-.bot nav{display:flex;flex-wrap:wrap;gap:1rem}
-.bot a:hover{color:var(--text)}
+h1,h2{font-family:var(--display);font-weight:400;letter-spacing:.02em;line-height:1.05}h3{font:600 1.15rem/1.25 var(--body)}
+/* Cabeçalho e rodapé compartilhados (iguais em todas as páginas) */
+.top,.bot{--h-bg:#0c0a10;--h-line:#2b2433;--h-text:#f4f1f6;--h-mute:#b6adbf;--h-rosa:#ff5c8a;--h-car:#e3123f;font:400 1rem/1.5 "Barlow",system-ui,sans-serif}
+.top a,.bot a{text-decoration:none}
+.top a:focus-visible,.bot a:focus-visible{outline:3px solid var(--h-rosa);outline-offset:3px}
+.top{position:sticky;top:0;z-index:50;background:var(--h-bg);border-bottom:1px solid var(--h-line)}
+.top .wrap,.bot .wrap{max-width:1120px;margin:0 auto;padding:0 1.25rem}
+.bar{display:flex;align-items:center;gap:1.25rem;min-height:4rem;flex-wrap:nowrap;padding-block:.35rem}
+.top .logo{flex:none;white-space:nowrap;display:flex;align-items:center;gap:.6rem;font:1.7rem/1 "Bebas Neue","Arial Narrow",Impact,sans-serif;letter-spacing:.03em;color:var(--h-text)}
+.top .logo img{width:40px;height:40px;border-radius:50%}
+.menu{display:flex;gap:.25rem 1.1rem;flex-wrap:wrap;flex:1 1 auto;min-width:0}
+.menu a{color:var(--h-mute)}
+.menu a:hover,.menu a[aria-current="page"]{color:var(--h-text)}
+.menu a[aria-current="page"]{text-decoration:underline;text-decoration-color:var(--h-rosa);text-underline-offset:6px}
+.top .sub{margin-left:auto;white-space:nowrap;flex:none;background:var(--h-car);color:#fff;font-weight:600;padding:.45rem 1rem;border-radius:6px;font-size:.95rem}
+.top .sub:hover{background:#b80d33}
+.bot{border-top:1px solid var(--h-line);padding:1.5rem 0 2rem;color:var(--h-mute);font-size:.95rem;background:var(--h-bg)}
+.bot .wrap{display:flex;flex-wrap:wrap;gap:.75rem 1.5rem;justify-content:space-between}
+.bot nav{display:flex;flex-wrap:wrap;gap:.4rem 1.25rem}
+.bot a{color:var(--h-mute)}
+.bot a:hover{color:var(--h-text)}
+@media(max-width:800px){.top{position:static}.bar{flex-wrap:wrap}.menu{flex:1 1 100%;order:3}.top .sub{margin-left:auto}}
 .eyebrow{color:var(--accent);font-weight:600;font-size:.85rem;letter-spacing:.12em}
-.btn{display:inline-block;background:var(--accent);color:var(--ink);padding:.65rem 1.2rem;border-radius:6px;font-weight:700}
+.btn{display:inline-block;background:var(--car);color:#fff;padding:.65rem 1.2rem;border-radius:6px;font-weight:700}
 .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
-.btn:hover{filter:brightness(1.1)}
-.btn.ghost:hover{border-color:var(--accent)}
+.btn:hover{background:#b80d33}
+.btn.ghost:hover{background:transparent;border-color:var(--accent)}
 .hero{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:12px;margin:1.5rem 0;min-height:420px;display:flex;align-items:center;background:#120e16}
 .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:right center}
-.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,var(--bg) 0%,rgba(10,9,13,.9) 38%,rgba(10,9,13,.15) 78%)}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,var(--bg) 0%,rgba(12,10,16,.9) 38%,rgba(12,10,16,.15) 78%)}
 .hero svg{position:absolute;inset:0;width:100%;height:100%;z-index:1;opacity:.55}
 .hero .in{position:relative;z-index:2;padding:2.5rem;max-width:34rem}
-.hero h1{font-size:clamp(2.4rem,6vw,4rem);font-weight:800;margin:.5rem 0 .8rem}
+.hero h1{font-size:clamp(3.2rem,9vw,5.5rem);font-weight:400;margin:.5rem 0 .8rem}
 .hero p{color:var(--mute);margin-bottom:1.5rem}
 .hero .acts{display:flex;gap:.8rem;flex-wrap:wrap}
 section.block{padding:2rem 0;border-top:1px solid var(--line)}
 .head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:.4rem}
-.head h2{font-size:1.6rem;font-weight:800}
+.head h2{font-size:2.2rem}
 .head a{color:var(--accent);font-size:.9rem;white-space:nowrap}
 .lede{color:var(--mute);margin-bottom:1.25rem;max-width:60ch}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.25rem}
@@ -78,30 +89,28 @@ a.card:hover{border-color:var(--accent)}
 .two{display:grid;grid-template-columns:1.6fr 1fr;gap:2rem}
 .rank{list-style:none;padding:0;counter-reset:r}
 .rank li{counter-increment:r;display:flex;gap:.8rem;padding:.7rem 0;border-top:1px solid var(--line)}
-.rank li::before{content:counter(r);font:800 1.4rem var(--display);color:var(--accent);min-width:1.4rem}
+.rank li::before{content:counter(r);font:400 1.8rem var(--display);color:var(--accent);min-width:1.4rem}
 .sobre{max-width:62ch;color:var(--mute)}
 .sobre p+p{margin-top:.9rem}
 .cta{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1.75rem;display:flex;gap:1rem;justify-content:space-between;align-items:center;flex-wrap:wrap;margin:1rem 0 2.5rem}
-.cta h2{font-size:1.4rem}
+.cta h2{font-size:2rem}
 .cta p{color:var(--mute)}
-@media(max-width:800px){.bar .btn{margin-left:0}.two{grid-template-columns:1fr}.hero::before{background:linear-gradient(180deg,rgba(10,9,13,.55),var(--bg) 85%)}.hero{align-items:flex-end}.grid.news{grid-template-columns:1fr}}
+@media(max-width:800px){.two{grid-template-columns:1fr}.hero::before{background:linear-gradient(180deg,rgba(12,10,16,.55),var(--bg) 85%)}.hero{align-items:flex-end}.grid.news{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <header class="top">
   <div class="wrap bar">
-    <a class="logo" href="index.html"><img src="icone.png" alt="" width="36" height="36">Controle Quebrado</a>
-    <nav class="menu" aria-label="Principal">
-      <a href="#videos">Vídeos</a><a href="#emulacao">Emulação</a><a href="#recompilados">Recompilados</a><a href="#linux">Linux</a><a href="comandos.html">Comandos</a><a href="quiz-driver.html">Quiz de driver</a>
-    </nav>
-    <a class="btn" href="https://www.youtube.com/@controlequebrado_tv">Inscreva-se no canal</a>
+    <a class="logo" href="index.html"><img src="icone.png" alt="" width="40" height="40">Controle Quebrado</a>
+    <nav class="menu" aria-label="Principal"><a href="index.html#videos">Vídeos</a><a href="index.html#emulacao">Emulação</a><a href="index.html#recompilados">Recompilados</a><a href="index.html#linux">Linux</a><a href="comandos.html">Comandos</a><a href="quiz-driver.html">Quiz de driver</a></nav>
+    <a class="sub" href="https://www.youtube.com/@controlequebrado_tv">Inscreva-se no canal</a>
   </div>
 </header>
 <main class="wrap" id="inicio">
   <section class="hero" aria-labelledby="titulo">
     <img src="preview.jpg" alt="Mascote encapuzado segurando um controle rachado" width="1200" height="630" fetchpriority="high">
     <svg viewBox="0 0 400 340" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
-      <path d="M300 0 L272 70 L310 100 L258 190 L292 215 L246 340" fill="none" stroke="#ff3d6e" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M300 0 L272 70 L310 100 L258 190 L292 215 L246 340" fill="none" stroke="#e3123f" stroke-width="2.5" stroke-linejoin="round"/>
     </svg>
     <div class="in">
       <span class="eyebrow">PC • GAMES • LINUX • TECNOLOGIA</span>
@@ -216,7 +225,7 @@ a.card:hover{border-color:var(--accent)}
   <div class="wrap">
     <span>© 2026 Controle Quebrado</span>
     <nav aria-label="Rodapé">
-      <a href="sobre.html">Sobre</a><a href="comandos.html">Comandos</a><a href="quiz-driver.html">Quiz de driver</a><a href="contato.html">Contato</a><a href="privacidade.html">Privacidade</a><a href="https://www.youtube.com/@controlequebrado_tv">YouTube</a>
+      <a href="sobre.html">Sobre</a><a href="comandos.html">Comandos</a><a href="quiz-driver.html">Quiz de driver</a><a href="contato.html">Contato</a><a href="privacidade.html">Privacidade</a><a href="https://www.youtube.com/@controlequebrado_tv" target="_blank" rel="noopener">YouTube</a>
     </nav>
   </div>
 </footer>
