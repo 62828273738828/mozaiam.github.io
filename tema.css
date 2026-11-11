@@ -1,0 +1,72 @@
+/* Tema gamer/tech do Controle Quebrado. Carregado por último em todas as páginas:
+   para mudar o visual do site inteiro, edite só este arquivo. */
+:root{--cy:#3ee0ff;--rd:#e3123f;--bg0:#07060b;--mono:ui-monospace,"Cascadia Code","JetBrains Mono",Consolas,monospace}
+html{background:var(--bg0)}
+body{background:
+ radial-gradient(900px 420px at 12% -5%,rgba(227,18,63,.22),transparent 70%),
+ radial-gradient(700px 380px at 100% 0,rgba(62,224,255,.08),transparent 70%),
+ linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px) 0 0/44px 44px,
+ linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px) 0 0/44px 44px,var(--bg0);background-attachment:fixed}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:99;opacity:.18;background:repeating-linear-gradient(0deg,rgba(0,0,0,.35) 0 1px,transparent 1px 3px)}
+
+/* Cabeçalho e rodapé */
+body .top{background:rgba(7,6,11,.85);backdrop-filter:blur(10px);border-bottom:0}
+body .top::after{content:"";display:block;height:1px;background:linear-gradient(90deg,var(--rd),var(--cy) 45%,transparent)}
+.top .logo img{box-shadow:0 0 0 2px var(--rd),0 0 18px rgba(227,18,63,.6)}
+body .menu a{font:600 .72rem var(--mono);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+body .menu{gap:.25rem .9rem}
+body .menu a:hover,body .menu a[aria-current="page"]{color:var(--cy);text-decoration-color:var(--cy)}
+body .bot{border-top:0;background:transparent;position:relative;font:400 .78rem var(--mono);text-transform:uppercase;letter-spacing:.07em}
+body .bot::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,var(--cy) 40%,var(--rd) 70%,transparent)}
+body .bot a:hover{color:var(--cy)}
+
+/* Botões angulares */
+body .btn,body .top .sub{border:0;border-radius:0;background:var(--rd);color:#fff;font:700 .82rem var(--mono);text-transform:uppercase;letter-spacing:.09em;clip-path:polygon(0 0,calc(100% - 11px) 0,100% 11px,100% 100%,11px 100%,0 calc(100% - 11px));transition:background .2s,transform .2s}
+body .btn:hover,body .top .sub:hover{background:#ff2d55;transform:translateY(-2px)}
+body .btn.ghost,body .btn-secundario{background:rgba(62,224,255,.07);color:var(--cy);box-shadow:inset 0 0 0 1px rgba(62,224,255,.55)}
+body .btn.ghost:hover,body .btn-secundario:hover{background:rgba(62,224,255,.16)}
+
+/* Títulos e rótulos */
+body h1,body h2{text-transform:uppercase;letter-spacing:.04em}
+body h1 span{color:var(--rd);text-shadow:0 0 24px rgba(227,18,63,.75)}
+.head h2::before,main>h2::before{content:"//";font:700 1rem var(--mono);color:var(--cy);margin-right:.6rem;vertical-align:middle}
+.eyebrow,.tag{font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--cy)}
+.tag{font-size:.72rem}
+.tag::before{content:"[ ";color:var(--rd)}
+.tag::after{content:" ]";color:var(--rd)}
+.rank li::before{color:var(--cy);text-shadow:0 0 12px rgba(62,224,255,.6)}
+
+/* Cartões com cantos de HUD */
+body .card{position:relative;background:linear-gradient(180deg,rgba(23,19,29,.92),rgba(12,10,16,.92));border:1px solid rgba(255,255,255,.09);border-radius:2px;transition:transform .2s,border-color .2s,box-shadow .2s}
+body .card::before,body .card::after{content:"";position:absolute;width:14px;height:14px;pointer-events:none;z-index:2;transition:width .2s,height .2s}
+body .card::before{top:-1px;left:-1px;border-top:2px solid var(--cy);border-left:2px solid var(--cy)}
+body .card::after{right:-1px;bottom:-1px;border-bottom:2px solid var(--rd);border-right:2px solid var(--rd)}
+a.card:hover{transform:translateY(-3px);border-color:rgba(62,224,255,.5);box-shadow:0 0 24px rgba(62,224,255,.14),0 10px 28px rgba(0,0,0,.5)}
+a.card:hover::before,a.card:hover::after{width:26px;height:26px}
+
+/* Destaque da home */
+body .hero{border:1px solid rgba(62,224,255,.28);border-radius:2px;box-shadow:0 0 0 1px rgba(227,18,63,.3),0 0 60px rgba(227,18,63,.16)}
+.hero h1{text-shadow:0 0 30px rgba(227,18,63,.5);animation:glitch .7s ease-out .2s 1}
+.term{font:500 .95rem var(--mono);color:var(--cy);margin:0 0 1.4rem}
+.term span{color:var(--rd)}
+.term i{display:inline-block;width:.55em;height:1.05em;background:var(--cy);margin-left:.3em;vertical-align:-.15em;animation:blink 1s steps(1) infinite}
+.chips{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.3rem}
+.chips a{font:600 .74rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--cy);padding:.3rem .7rem;box-shadow:inset 0 0 0 1px rgba(62,224,255,.45)}
+.chips a:hover{background:rgba(62,224,255,.14)}
+@keyframes blink{50%{opacity:0}}
+@keyframes glitch{20%{transform:translate(-3px,1px);text-shadow:3px 0 #ff5c8a,-3px 0 var(--cy)}40%{transform:translate(3px,-1px);text-shadow:-3px 0 #ff5c8a,3px 0 var(--cy)}60%{transform:translate(-2px,0)}100%{transform:none}}
+
+/* Blocos de código, FAQ e quiz */
+body pre{background:#05040a;border:1px solid rgba(62,224,255,.25);border-left:3px solid var(--cy);border-radius:2px;box-shadow:inset 0 0 24px rgba(62,224,255,.05)}
+body code{color:#9af0ff}
+body .prompt{color:var(--rd)}
+body .copiar{border-radius:0;background:transparent;font:600 .7rem var(--mono);text-transform:uppercase;letter-spacing:.08em;border-color:rgba(62,224,255,.45);color:var(--cy)}
+body .copiar:hover{background:var(--cy);color:#05040a;border-color:var(--cy)}
+body details{border-radius:2px;border:1px solid rgba(255,255,255,.1);border-left:3px solid var(--rd);background:rgba(23,19,29,.8)}
+body summary{font:600 .95rem var(--mono)}
+body .opcao{border-radius:0;font:700 .82rem var(--mono);text-transform:uppercase;letter-spacing:.07em;border:1px solid rgba(255,255,255,.16)}
+body .opcao:hover{border-color:var(--cy);box-shadow:0 0 16px rgba(62,224,255,.22)}
+body .opcao[aria-pressed="true"]{border-color:var(--rd);background:rgba(227,18,63,.14);box-shadow:0 0 18px rgba(227,18,63,.4)}
+body .codigo{text-shadow:0 0 40px rgba(227,18,63,.55)}
+a:focus-visible,button:focus-visible{outline-color:var(--cy)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}

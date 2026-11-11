@@ -97,6 +97,7 @@ a.card:hover{border-color:var(--accent)}
 .cta p{color:var(--mute)}
 @media(max-width:800px){.two{grid-template-columns:1fr}.hero::before{background:linear-gradient(180deg,rgba(12,10,16,.55),var(--bg) 85%)}.hero{align-items:flex-end}.grid.news{grid-template-columns:1fr}}
 </style>
+<link rel="stylesheet" href="tema.css">
 </head>
 <body>
 <header class="top">
@@ -113,13 +114,14 @@ a.card:hover{border-color:var(--accent)}
       <path d="M300 0 L272 70 L310 100 L258 190 L292 215 L246 340" fill="none" stroke="#e3123f" stroke-width="2.5" stroke-linejoin="round"/>
     </svg>
     <div class="in">
-      <span class="eyebrow">PC • GAMES • LINUX • TECNOLOGIA</span>
+      <span class="eyebrow">// PC • GAMES • LINUX • TECNOLOGIA</span>
       <h1 id="titulo">Controle Quebrado</h1>
       <p>Tutoriais em português para rodar seus jogos no Linux, configurar o PC e acompanhar o que há de novo em tecnologia.</p>
+      <p class="term" aria-hidden="true"><span>$</span> ./jogar --linux<i></i></p>
       <div class="acts">
-        <a class="btn" href="https://www.youtube.com/@controlequebrado_tv">Inscreva-se no canal</a>
-        <a class="btn ghost" href="#videos">Ver vídeos</a>
+        <a class="btn" href="#videos">Ver vídeos</a>
       </div>
+      <nav class="chips" aria-label="Categorias"><a href="#emulacao">Emulação</a><a href="#recompilados">Recompilados</a><a href="#linux">Linux</a><a href="#novidades">Notícias</a></nav>
     </div>
   </section>
 
@@ -216,10 +218,6 @@ a.card:hover{border-color:var(--accent)}
     </div>
   </section>
 
-  <div class="cta">
-    <div><h2>Gostou do conteúdo?</h2><p>Novos vídeos de Linux, games e tecnologia no canal.</p></div>
-    <a class="btn" href="https://www.youtube.com/@controlequebrado_tv">Inscreva-se no canal</a>
-  </div>
 </main>
 <footer class="bot">
   <div class="wrap">
