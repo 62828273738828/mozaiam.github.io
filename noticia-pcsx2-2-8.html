@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PCSX2 2.8 chega com foco em desempenho | Controle Quebrado</title>
+<meta name="description" content="O PCSX2 2.8.0 foi lançado cerca de seis meses depois da versão 2.6.0, com mudanças concentradas no motor gráfico: mais desempenho, correções de renderização e mais precisão.">
+<link rel="canonical" href="https://62828273738828.github.io/mozaiam.github.io/noticia-pcsx2-2-8.html">
+<link rel="icon" type="image/png" href="icone.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Controle Quebrado">
+<meta property="og:title" content="PCSX2 2.8 chega com foco em desempenho | Controle Quebrado">
+<meta property="og:description" content="O PCSX2 2.8.0 foi lançado cerca de seis meses depois da versão 2.6.0, com mudanças concentradas no motor gráfico: mais desempenho, correções de renderização e mais precisão.">
+<meta property="og:url" content="https://62828273738828.github.io/mozaiam.github.io/noticia-pcsx2-2-8.html">
+<meta property="og:image" content="https://62828273738828.github.io/mozaiam.github.io/noticia-pcsx2.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Controle Quebrado: PC, games, Linux e tecnologia, com o mascote encapuzado segurando um controle rachado">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0c0a10">
+<link rel="preload" href="fontes/BebasNeue-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fontes/Barlow-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face { font-family: "Bebas Neue"; src: url("fontes/BebasNeue-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Barlow"; src: url("fontes/Barlow-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Barlow"; src: url("fontes/Barlow-SemiBold.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+/* Cores e fontes do canal (as mesmas da página inicial) */
+:root {
+  --fundo: #0c0a10; --superficie: #17131d; --borda: #2b2433;
+  --texto: #f4f1f6; --texto-suave: #b6adbf; --carmesim: #e3123f; --rosa: #ff5c8a;
+  --titulo: "Bebas Neue", "Arial Narrow", Impact, sans-serif;
+  --corpo: "Barlow", system-ui, sans-serif;
+  color-scheme: dark; box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { color-scheme: dark; } }
+:root[data-theme="dark"] { color-scheme: dark; }
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+*, *::before, *::after { box-sizing: inherit; }
+body { margin: 0; background: var(--fundo); color: var(--texto); font: 400 1.125rem/1.7 var(--corpo); }
+a { color: var(--rosa); }
+a:focus-visible { outline: 3px solid var(--rosa); outline-offset: 3px; }
+.container { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem; }
+.topo { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .75rem; padding-top: 1.25rem; padding-bottom: 1.25rem; }
+.logo { font: 1.7rem/1 var(--titulo); color: var(--texto); text-decoration: none; letter-spacing: .03em; }
+.topo a.voltar { color: var(--texto-suave); text-decoration: none; }
+.topo a.voltar:hover { color: var(--texto); }
+main { padding-block: 2rem 3.5rem; }
+h1 { margin: 0 0 .5rem; font: clamp(2.8rem, 9vw, 4.5rem)/1 var(--titulo); letter-spacing: .02em; }
+h1 span { color: var(--carmesim); }
+h2 { margin: 2.25rem 0 .5rem; font: 2rem/1.1 var(--titulo); letter-spacing: .02em; }
+p, li { color: var(--texto-suave); }
+p { margin: 0 0 1rem; }
+.atualizado { font-size: .95rem; }
+.btn { display: inline-block; padding: .8rem 1.4rem; border-radius: 6px; font-weight: 600; text-decoration: none; background: var(--carmesim); color: #fff; transition: background .2s; }
+.btn:hover { background: #b80d33; }
+.btn:focus-visible { outline: 3px solid var(--rosa); outline-offset: 3px; }
+.rodape { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .75rem; padding-top: 1.5rem; padding-bottom: 2rem; border-top: 1px solid var(--borda); color: var(--texto-suave); font-size: .95rem; }
+.rodape nav { display: flex; flex-wrap: wrap; gap: .4rem 1.25rem; }
+.logo { display: flex; align-items: center; gap: .6rem; }
+.logo img { width: 40px; height: 40px; border-radius: 50%; }
+.topo nav { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; }
+.topo nav a { color: var(--texto-suave); text-decoration: none; }
+.topo nav a:hover { color: var(--texto); }
+/* Cabeçalho e rodapé compartilhados (iguais em todas as páginas) */
+.top,.bot{--h-bg:#0c0a10;--h-line:#2b2433;--h-text:#f4f1f6;--h-mute:#b6adbf;--h-rosa:#ff5c8a;--h-car:#e3123f;font:400 1rem/1.5 "Barlow",system-ui,sans-serif}
+.top a,.bot a{text-decoration:none}
+.top a:focus-visible,.bot a:focus-visible{outline:3px solid var(--h-rosa);outline-offset:3px}
+.top{position:sticky;top:0;z-index:50;background:var(--h-bg);border-bottom:1px solid var(--h-line)}
+.top .wrap,.bot .wrap{max-width:1120px;margin:0 auto;padding:0 1.25rem}
+.bar{display:flex;align-items:center;gap:1.25rem;min-height:4rem;flex-wrap:nowrap;padding-block:.35rem}
+.top .logo{flex:none;white-space:nowrap;display:flex;align-items:center;gap:.6rem;font:1.7rem/1 "Bebas Neue","Arial Narrow",Impact,sans-serif;letter-spacing:.03em;color:var(--h-text)}
+.top .logo img{width:40px;height:40px;border-radius:50%}
+.menu{display:flex;gap:.25rem 1.1rem;flex-wrap:wrap;flex:1 1 auto;min-width:0}
+.menu a{color:var(--h-mute)}
+.menu a:hover,.menu a[aria-current="page"]{color:var(--h-text)}
+.menu a[aria-current="page"]{text-decoration:underline;text-decoration-color:var(--h-rosa);text-underline-offset:6px}
+.top .sub{margin-left:auto;white-space:nowrap;flex:none;background:var(--h-car);color:#fff;font-weight:600;padding:.45rem 1rem;border-radius:6px;font-size:.95rem}
+.top .sub:hover{background:#b80d33}
+.bot{border-top:1px solid var(--h-line);padding:1.5rem 0 2rem;color:var(--h-mute);font-size:.95rem;background:var(--h-bg)}
+.bot .wrap{display:flex;flex-wrap:wrap;gap:.75rem 1.5rem;justify-content:space-between}
+.bot nav{display:flex;flex-wrap:wrap;gap:.4rem 1.25rem}
+.bot a{color:var(--h-mute)}
+.bot a:hover{color:var(--h-text)}
+@media(max-width:800px){.top{position:static}.bar{flex-wrap:wrap}.menu{flex:1 1 100%;order:3}.top .sub{margin-left:auto}}
+</style>
+<link rel="stylesheet" href="tema.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "NewsArticle", "headline": "PCSX2 2.8 chega com foco em desempenho", "image": ["https://62828273738828.github.io/mozaiam.github.io/noticia-pcsx2.jpg"], "author": {"@type": "Person", "name": "Caio Mendonça"}, "publisher": {"@type": "Organization", "name": "Controle Quebrado", "logo": {"@type": "ImageObject", "url": "https://62828273738828.github.io/mozaiam.github.io/icone.png"}}, "mainEntityOfPage": "https://62828273738828.github.io/mozaiam.github.io/noticia-pcsx2-2-8.html", "isBasedOn": "https://pcsx2.net/blog/2026/pcsx2-2.8/", "inLanguage": "pt-BR", "datePublished": "2026-08-28"}</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap bar">
+    <a class="logo" href="index.html"><img src="icone.png" alt="" width="40" height="40">Controle Quebrado</a>
+    <nav class="menu" aria-label="Principal"><a href="index.html#videos">Vídeos</a><a href="index.html#emulacao">Emulação</a><a href="index.html#recompilados">Recompilados</a><a href="index.html#linux">Linux</a><a href="comandos.html">Comandos</a><a href="quiz-driver.html">Quiz de driver</a></nav>
+    <a class="sub" href="https://www.youtube.com/@controlequebrado_tv">Inscreva-se no canal</a>
+  </div>
+</header>
+<main class="container">
+<p class="atualizado"><a href="index.html#novidades">← Voltar às notícias</a></p>
+<h1 style="font-size:clamp(2.2rem,6vw,3.4rem)">PCSX2 2.8 chega com foco em desempenho</h1>
+<p class="atualizado">Emulação · 28 de agosto de 2026</p>
+<img src="noticia-pcsx2.jpg" alt="PCSX2 2.8 chega com foco em desempenho" width="800" height="450" style="width:100%;height:auto;border:1px solid #2b2433;margin:.5rem 0 1rem">
+
+<p>O PCSX2 2.8.0 foi lançado cerca de seis meses depois da versão 2.6.0, com mudanças concentradas no motor gráfico: mais desempenho, correções de renderização e mais precisão.</p>
+<p>No Windows, o Direct3D 12 virou o renderizador padrão para placas NVIDIA e AMD, e os requisitos recomendados foram reorganizados em três níveis: mínimo, moderado e pesado.</p>
+<p>Fonte: <a href="https://pcsx2.net/blog/2026/pcsx2-2.8/" target="_blank" rel="noopener">blog oficial do PCSX2</a>. Este texto é um resumo; para os detalhes, leia a matéria original.</p>
+<h2>Veja também</h2>
+<ul><li><a href="pcsx2-linux-mint.html">PCSX2 no Linux Mint</a></li><li><a href="texturas-hd-pcsx2.html">Texturas HD no PCSX2</a></li></ul>
+</main>
+<footer class="bot">
+  <div class="wrap">
+    <span>© 2026 Controle Quebrado</span>
+    <nav aria-label="Rodapé">
+      <a href="sobre.html">Sobre</a><a href="comandos.html">Comandos</a><a href="quiz-driver.html">Quiz de driver</a><a href="contato.html">Contato</a><a href="privacidade.html">Privacidade</a><a href="https://www.youtube.com/@controlequebrado_tv" target="_blank" rel="noopener">YouTube</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>
